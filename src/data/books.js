@@ -11,7 +11,7 @@ export const books = [
     id: 'react-ui-runtime', category: 'tech', type: 'Article',
     title: 'React as a UI Runtime', author: 'Dan Abramov',
     description: 'An essay on React’s programming model, exploring elements, rendering, reconciliation, and how the runtime fits together.',
-    cover: 'books/react-ui-runtime.svg', color: '#b6c8e5', stacked: true, width: 200, height: 43,
+    cover: 'books/react-ui-runtime.svg', color: '#b6c8e5', width: 46, height: 236, lean: -2,
     url: 'https://overreacted.io/react-as-a-ui-runtime/', linkLabel: 'Read article'
   },
   {
@@ -25,7 +25,7 @@ export const books = [
     id: 'distributed-systems', category: 'tech', type: 'Book',
     title: 'Understanding Distributed Systems', author: 'Roberto Vitillo',
     description: 'An introduction to communication, coordination, scalability, and resilience in distributed applications.',
-    cover: 'books/distributed-systems.jpg', color: '#e5c49b', stacked: true, width: 210, height: 46,
+    cover: 'books/distributed-systems.jpg', color: '#e5c49b', width: 67, height: 248,
     url: 'https://understandingdistributed.systems/', linkLabel: 'Book details'
   },
   {
@@ -67,14 +67,14 @@ export const books = [
     id: 'catch-22', category: 'non-tech', type: 'Book',
     title: 'Catch-22', author: 'Joseph Heller',
     description: 'A dark satire about a bombardier navigating military bureaucracy and the circular logic of war.',
-    cover: 'books/catch-22.jpg', color: '#b6c8e5', stacked: true, width: 179, height: 43,
+    cover: 'books/catch-22.jpg', color: '#b6c8e5', width: 62, height: 230, lean: -1,
     url: 'https://www.simonandschuster.net/books/Catch-22/Joseph-Heller/9781451621174', linkLabel: 'Book details'
   },
   {
     id: 'piranesi', category: 'non-tech', type: 'Book',
     title: 'Piranesi', author: 'Susanna Clarke',
     description: 'A man records his life in an immense house of statues and tides, gradually questioning what he knows about his world.',
-    cover: 'books/piranesi.jpg', color: '#c8b8d9', stacked: true, width: 173, height: 39,
+    cover: 'books/piranesi.jpg', color: '#c8b8d9', width: 43, height: 220, lean: 2,
     url: 'https://www.bloomsbury.com/us/piranesi-9781635577808/', linkLabel: 'Book details'
   }
 ];

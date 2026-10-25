@@ -20,10 +20,10 @@ const sections = [
 
 function readHash() {
   const [name, detail] = window.location.hash.slice(1).split('/');
-  const projectSlugs=['devassist-mcp','gmail-file-system','risc-v-simulator','pg-admissions-portal','gamedome'];
+  const projectSlugs=['devassist-mcp','gmail-file-system','risc-v-simulator','gradient-vector-field-snake','pg-admissions-portal','gamedome'];
   return {
     section: sections.some(([id]) => id === name) ? name : 'home',
-    game: name === 'games' && ['2-states', 'angle', 'rps'].includes(detail) ? detail : null,
+    game: name === 'games' && ['2-states', 'probable', 'angle', 'rps'].includes(detail) ? detail : null,
     project: name === 'projects' && projectSlugs.includes(detail) ? detail : null
   };
 }

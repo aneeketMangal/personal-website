@@ -33,14 +33,16 @@ export default function Library() {
     {[['tech', 'Tech'], ['non-tech', 'Non-tech']].map(([category, label]) => {
       const entries = books.filter(book => book.category === category);
       const articles = entries.filter(book => book.type === 'Article').length;
+      const upright = entries.filter(book => !book.stacked);
+      const stacked = entries.filter(book => book.stacked);
       return <Box component="section" key={category} className="library-shelf" aria-label={`${label} bookshelf`}>
         <Stack direction="row" sx={{alignItems: 'center', justifyContent: 'space-between', gap: 1, mb: 1.5}}>
           <Typography variant="h4" component="h3">{label}</Typography>
           <Typography variant="body2" sx={{color: 'text.secondary', textAlign: 'right'}}>{entries.length - articles} books{articles ? ` · ${articles} article` : ''}</Typography>
         </Stack>
         <Box className="shelf-scroll"><Box className="book-rack">
-          <Box className="upright-books">{entries.filter(book => !book.stacked).map(bookButton)}</Box>
-          <Box className="stacked-books">{entries.filter(book => book.stacked).map(bookButton)}</Box>
+          <Box className="upright-books">{upright.map(bookButton)}</Box>
+          {stacked.length>0&&<Box className="stacked-books">{stacked.map(bookButton)}</Box>}
         </Box></Box>
         <Box className="wooden-plank" aria-hidden="true"/>
       </Box>;
