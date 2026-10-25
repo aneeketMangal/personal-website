@@ -63,18 +63,28 @@
   ],
   "projects": [
     {
+      "slug": "devassist-mcp",
       "title": "DevAssist MCP Server",
       "description": "Production-grade tooling for context-aware engineering documents, RAG-powered codebase queries, and semantically grounded UML diagrams. Adopted by more than 10 engineering teams.",
       "category": "MICROSOFT · 2025",
       "tech": [
         "MCP",
         "RAG",
+        "UML",
         "Developer experience"
+      ],
+      "overview": "An internal developer-productivity platform that connects engineering context to document generation, codebase questions, and architecture diagrams through the Model Context Protocol.",
+      "highlights": [
+        "Generates context-aware engineering documents and supports retrieval-augmented codebase queries.",
+        "Grounds UML generation in semantic code queries to reduce hallucinated relationships.",
+        "Contributed to a 100% increase in generated troubleshooting guides and incident postmortems.",
+        "Adopted by more than 10 engineering teams and continued beyond the original handoff."
       ],
       "url": "https://drive.google.com/file/d/1QctsHCG83CnhnHtt3D_zHy4kSPafeu7g/view?usp=sharing",
       "link": "View resume"
     },
     {
+      "slug": "gmail-file-system",
       "title": "Gmail File System",
       "description": "A FUSE filesystem that mounts a remote mailbox as a local directory, using IMAP to explore an unconventional storage backend.",
       "category": "SYSTEMS",
@@ -84,22 +94,39 @@
         "libcurl",
         "IMAP"
       ],
+      "overview": "A userspace filesystem that treats a Gmail mailbox as remote storage: subjects become filenames, message bodies become file contents, and a dedicated Gmail label acts as the filesystem root.",
+      "highlights": [
+        "Implements familiar operations including ls, cd, mkdir, cat, write, rm, and rmdir through FUSE callbacks.",
+        "Uses libcurl to fetch messages, send mail, validate paths, enumerate folders, and delete files or directories over IMAP.",
+        "Includes custom string-processing helpers for parsing structured IMAP responses.",
+        "Runs as a mounted Linux filesystem and maps file creation or edits back to email operations."
+      ],
       "url": "https://github.com/aneeketMangal/Gmail-File-System",
       "link": "View repository"
     },
     {
+      "slug": "risc-v-simulator",
       "title": "RISC-V Simulator",
       "description": "A team-built simulator for 32-bit RISC-V execution, with pipelining, forwarding, cache configuration, and a step-through graphical interface.",
       "category": "COLLABORATIVE ACADEMIC PROJECT",
       "tech": [
         "Python",
         "PyQt5",
+        "Pandas",
         "Computer architecture"
+      ],
+      "overview": "A collaborative 32-bit RISC-V simulator that exposes machine-level execution step by step through both command-line and PyQt interfaces.",
+      "highlights": [
+        "Supports 29 instructions with an extensible CSV-driven instruction definition system.",
+        "Models five execution stages, pipelining, data forwarding, pipeline registers, and cycle counts.",
+        "Provides configurable instruction and data caches, replacement policies, and branch prediction controls.",
+        "Produces detailed register, memory, forwarding, statistics, and execution-log outputs for analysis."
       ],
       "url": "https://github.com/aneeketMangal/RISC-V_Simulator",
       "link": "View repository"
     },
     {
+      "slug": "pg-admissions-portal",
       "title": "PG Admissions Portal",
       "description": "A responsive postgraduate admissions platform with merit-list generation, academic configuration, and actionable data visualizations for administrators.",
       "category": "IIT ROPAR · 2022",
@@ -109,10 +136,18 @@
         "React",
         "Node.js"
       ],
+      "overview": "A full-stack postgraduate admissions system designed to streamline the application and administrative workflow for IIT Ropar.",
+      "highlights": [
+        "Supports programs, academic-cycle configuration, and end-to-end admissions administration.",
+        "Generates merit lists from applicant and academic data.",
+        "Presents actionable visualizations for administrators through a responsive React interface.",
+        "Built as a MERN application with a recorded product demonstration."
+      ],
       "url": "https://drive.google.com/file/d/1V1YqgCRFs8J76fwSykuYxXF5q5gm-9QB/view?usp=sharing",
       "link": "Watch demo"
     },
     {
+      "slug": "gamedome",
       "title": "GameDome",
       "description": "A Flutter arcade-game collection with authentication, local persistence, animations, and global chat powered by a Flask REST API.",
       "category": "PERSONAL PROJECT",
@@ -120,7 +155,16 @@
         "Flutter",
         "Dart",
         "Flask",
-        "REST API"
+        "REST API",
+        "SQLite",
+        "Shared Preferences"
+      ],
+      "overview": "A mobile arcade collection built with Flutter, combining multiple games with account features and a shared social layer.",
+      "highlights": [
+        "Includes user authentication, leaderboards, animations, and a global chat experience.",
+        "Implements chat through a Flask REST API whose source is included in the repository backend folder.",
+        "Uses local SQLite storage and shared preferences for authentication and leaderboard state.",
+        "Designed so contributors can add games or extend the app's features and animation system."
       ],
       "url": "https://github.com/aneeketMangal/theGameDome",
       "link": "View repository"

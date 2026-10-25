@@ -20,15 +20,18 @@ const sections = [
 
 function readHash() {
   const [name, detail] = window.location.hash.slice(1).split('/');
+  const projectSlugs=['devassist-mcp','gmail-file-system','risc-v-simulator','pg-admissions-portal','gamedome'];
   return {
     section: sections.some(([id]) => id === name) ? name : 'home',
-    game: name === 'games' && ['2-states', 'angle', 'rps'].includes(detail) ? detail : null
+    game: name === 'games' && ['2-states', 'angle', 'rps'].includes(detail) ? detail : null,
+    project: name === 'projects' && projectSlugs.includes(detail) ? detail : null
   };
 }
 
 export default function App() {
   const [activeSection, setActiveSection] = useState(() => readHash().section);
   const [game, setGame] = useState(() => readHash().game);
+  const [project,setProject]=useState(()=>readHash().project);
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   function updateHash(hash) {
     if (window.location.hash !== `#${hash}`) {
@@ -43,6 +46,7 @@ export default function App() {
     updateHash(section);
     setActiveSection(section);
     setGame(null);
+    setProject(null);
     window.scrollTo({top:0,behavior:reducedMotion?'auto':'smooth'});
   }
 
@@ -52,11 +56,18 @@ export default function App() {
     updateHash(nextGame ? `games/${nextGame}` : 'games');
     window.scrollTo({top:0,behavior:'auto'});
   }
+  function selectProject(nextProject) {
+    setProject(nextProject);
+    setActiveSection('projects');
+    updateHash(nextProject?`projects/${nextProject}`:'projects');
+    window.scrollTo({top:0,behavior:'auto'});
+  }
 
   useEffect(() => {
     function followHash() {
       const next = readHash();
       setGame(next.section === 'games' ? next.game : null);
+      setProject(next.section === 'projects'?next.project:null);
       setActiveSection(next.section);
       window.scrollTo({top:0,behavior:'auto'});
     }
@@ -107,7 +118,7 @@ export default function App() {
     </Box>
   );
   const page = activeSection === 'home' ? <Home/>
-    : activeSection === 'projects' ? <Projects/>
+    : activeSection === 'projects' ? <Projects project={project} onSelect={selectProject}/>
     : activeSection === 'games' ? <Games game={null} onSelect={selectGame}/>
     : <Library/>;
   return <Box>

@@ -3,6 +3,7 @@
 html[data-theme='light'] .brand-logo-uber{filter:brightness(0) saturate(100%)}
 @media(max-width:700px){.project-grid,.games-grid{grid-template-columns:1fr;gap:20px}.game-preview{height:225px}.book-rack{justify-content:flex-start;padding-left:20px;gap:25px}.library-shelf{margin-bottom:44px}.book-cover{width:165px;min-width:165px;height:238px;padding:19px}.book-cover .MuiTypography-h4{font-size:21px}.book-cover .MuiTypography-overline{font-size:10px}.game-layout{gap:18px}}
 @media(max-width:600px){.states-game-layout,.angle-game-layout{gap:0}.states-map-panel,.angle-dial-panel{border-radius:14px 14px 0 0!important}.states-control-panel,.angle-control-panel{border-top:0;border-radius:0 0 14px 14px!important}.states-map-panel .india-map{min-height:300px}.angle-dial-panel{padding-bottom:0!important}.angle-control-panel{padding-top:18px!important}}
+.project-row[role='link']{cursor:pointer;transition:transform 180ms ease,background-color 180ms ease}.project-row[role='link']:hover{transform:translateX(4px);background:#ffffff03}.project-row[role='link']:focus-visible{outline:2px solid #b5c9e7;outline-offset:4px}.project-detail-page{max-width:920px}.project-detail-panel{max-width:820px;padding:24px;border:1px solid #303a45;border-radius:14px;background:#ffffff03}html[data-theme='light'] .project-detail-panel{border-color:#d8cdbb;background:#ffffff55}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}*,*:before,*:after{animation:none!important;transition:none!important}}
 
 /* Plain, continuous sections inspired by the supplied layout reference. */

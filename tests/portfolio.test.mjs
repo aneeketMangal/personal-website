@@ -84,6 +84,8 @@ test('project order includes RISC-V above PG plus GameDome, without Johnson or w
   assert(profile.projects.every(p => !/2 states|what.s your angle|johnson/i.test(p.title)));
   assert.equal(profile.projects[4].url, 'https://github.com/aneeketMangal/theGameDome');
   assert.equal(profile.projects[2].url, 'https://github.com/aneeketMangal/RISC-V_Simulator');
+  assert.equal(new Set(profile.projects.map(project => project.slug)).size, profile.projects.length);
+  assert(profile.projects.every(project => project.tech.length >= 4 && project.overview && project.highlights.length >= 4));
 });
 
 test('games are imported eagerly, not through fragile delayed game chunks', async () => {
