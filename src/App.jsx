@@ -1,9 +1,7 @@
 import React, {useCallback, useEffect, useRef, useState} from 'react';
 import {
-  Box, ButtonBase, Drawer, IconButton, Stack, Typography, useMediaQuery
+  Box, ButtonBase, Stack, Typography, useMediaQuery
 } from '@mui/material';
-import MenuIcon from '@mui/icons-material/Menu';
-import CloseIcon from '@mui/icons-material/Close';
 import HomeOutlined from '@mui/icons-material/HomeOutlined';
 import SchoolOutlined from '@mui/icons-material/SchoolOutlined';
 import WorkOutlined from '@mui/icons-material/WorkOutlined';
@@ -28,15 +26,13 @@ function readHash() {
   const [name, detail] = window.location.hash.slice(1).split('/');
   return {
     section: sections.some(([id]) => id === name) ? name : 'home',
-    game: name === 'games' && ['2-states', 'angle'].includes(detail) ? detail : null
+    game: name === 'games' && ['2-states', 'angle', 'atlas', 'rps'].includes(detail) ? detail : null
   };
 }
 
 export default function App() {
   const [activeSection, setActiveSection] = useState(() => readHash().section);
   const [game, setGame] = useState(() => readHash().game);
-  const [mobileOpen, setMobileOpen] = useState(false);
-  const desktop = useMediaQuery('(min-width:900px)');
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
   const navigationTimer = useRef();
 
@@ -59,9 +55,8 @@ export default function App() {
     event?.preventDefault();
     updateHash(section === 'games' && game ? `games/${game}` : section);
     setActiveSection(section);
-    setMobileOpen(false);
     clearTimeout(navigationTimer.current);
-    navigationTimer.current = setTimeout(() => scrollToSection(section), mobileOpen ? 250 : 0);
+    navigationTimer.current = setTimeout(() => scrollToSection(section), 0);
   }
 
   function selectGame(nextGame) {
@@ -70,10 +65,6 @@ export default function App() {
     updateHash(nextGame ? `games/${nextGame}` : 'games');
     requestAnimationFrame(() => scrollToSection('games'));
   }
-
-  useEffect(() => {
-    if (desktop) setMobileOpen(false);
-  }, [desktop]);
 
   useEffect(() => {
     let frame;
@@ -104,7 +95,7 @@ export default function App() {
     let frame;
     function markVisibleSection() {
       frame = null;
-      const line = desktop ? 110 : 145;
+      const line = 96;
       let visible = 'home';
       for (const [id] of sections) {
         if (document.getElementById(id)?.getBoundingClientRect().top <= line) visible = id;
@@ -125,10 +116,16 @@ export default function App() {
       window.removeEventListener('scroll', requestUpdate);
       window.removeEventListener('resize', requestUpdate);
     };
-  }, [desktop]);
+  }, []);
+
+  if (game) return <Box component="main" className="dedicated-game-page">
+    <Box sx={{maxWidth:1120,mx:'auto',px:{xs:2,sm:4,lg:6},py:{xs:3,md:5}}}>
+      <Games game={game} onSelect={selectGame}/>
+    </Box>
+  </Box>;
 
   const navigation = (
-    <Box component="nav" id="site-menu" aria-label="Main sections" className="floating-navigation" sx={{position: desktop ? 'fixed' : 'relative', right: desktop ? 24 : 'auto', top: desktop ? '50%' : 'auto', transform: desktop ? 'translateY(-50%)' : 'none', zIndex: 1100, maxHeight: desktop ? 'calc(100dvh - 16px)' : 'none', overflowY: 'auto', scrollbarWidth: 'none', '&::-webkit-scrollbar': {display: 'none'}}}>
+    <Box component="nav" id="site-menu" aria-label="Main sections" className="top-navigation" sx={{position:'fixed',top:0,left:0,right:0,zIndex:1100,height:64,bgcolor:'background.default',borderBottom:1,borderColor:'divider'}}>
       <svg width="0" height="0" aria-hidden="true" focusable="false" style={{position: 'absolute', pointerEvents: 'none'}}>
         <defs>
           <linearGradient id="games-menu-gold" x1="0" y1="0" x2="1" y2="0" gradientTransform="translate(-2 0)">
@@ -142,38 +139,26 @@ export default function App() {
           </linearGradient>
         </defs>
       </svg>
-      <Stack spacing={1} useFlexGap>
+      <ButtonBase component="a" href="#home" aria-label="Aneeket Mangal home" onClick={event=>navigate('home',event)}
+        sx={{position:'absolute',left:{xs:8,sm:14},top:11,width:42,height:42,borderRadius:'13px',zIndex:1,color:'primary.main',bgcolor:'background.paper',border:1,borderColor:'divider',fontSize:'.94rem',fontWeight:800,letterSpacing:'-.06em',boxShadow:'0 7px 18px #0004','&:hover':{transform:'translateY(-1px)',color:'primary.main'},'&.Mui-focusVisible':{outline:'2px solid #b5c9e7',outlineOffset:2}}}>AM</ButtonBase>
+      <Stack direction="row" spacing={{xs:.25,sm:.75}} useFlexGap sx={{position:'absolute',left:{xs:58,sm:70},right:78,height:'100%',px:{xs:.5,sm:1},justifyContent:'flex-start',alignItems:'stretch',overflowX:'auto',scrollbarWidth:'none','& > :first-of-type':{ml:'auto'},'&::-webkit-scrollbar':{display:'none'}}}>
         {sections.map(([id, label, Icon]) => <ButtonBase component="a" key={id} href={`#${id}`} data-testid={`nav-${id}`} aria-label={label}
           className={id === 'games' ? 'games-menu-item' : undefined}
           aria-current={activeSection === id ? 'location' : undefined} onClick={event => navigate(id, event)}
-          sx={{minHeight: 48, minWidth: 48, width: desktop ? 192 : '100%', px: desktop ? 0 : 2, justifyContent: 'flex-start', gap: 1.5,
+          sx={{height:64,minWidth:'max-content',px:{xs:1,sm:1.5},justifyContent:'center',gap:{xs:.5,sm:.75},borderBottom:activeSection===id?2:2,borderColor:activeSection===id?(id==='games'?'#e7bc61':'primary.main'):'transparent',
             color: id === 'games' ? '#e7bc61' : activeSection === id ? 'primary.main' : 'text.secondary', bgcolor: 'transparent',
             '&:hover': {color: id === 'games' ? '#f5d38f' : 'primary.main'},
             '&.Mui-focusVisible': {outline: `2px solid ${id === 'games' ? '#e7bc61' : '#b5c9e7'}`, outlineOffset: 2}}}>
-          <Icon sx={{fontSize: 25, ...(id === 'games' && {fill: reducedMotion ? 'currentColor' : 'url(#games-menu-gold)'})}}/>
+          <Icon sx={{fontSize:{xs:19,sm:21},...(id === 'games' && {fill: reducedMotion ? 'currentColor' : 'url(#games-menu-gold)'})}}/>
           <Typography className={id === 'games' ? 'games-menu-label' : undefined}
-            sx={{fontSize: '1rem', whiteSpace: 'nowrap', fontWeight: id === 'games' || activeSection === id ? 650 : 400}}>{label}</Typography>
+            sx={{display:{xs:'none',md:'block'},fontSize:'.86rem',whiteSpace:'nowrap',fontWeight:id==='games'||activeSection===id?650:400}}>{label}</Typography>
         </ButtonBase>)}
       </Stack>
     </Box>
   );
   return <Box>
-    {desktop ? navigation : <>
-      <IconButton aria-label="Open navigation" aria-controls={mobileOpen ? 'site-menu' : undefined} aria-expanded={mobileOpen}
-        onClick={() => setMobileOpen(true)} sx={{position: 'fixed', top: 12, right: 12, zIndex: 1100, width: 48, height: 48, bgcolor: 'transparent', color: 'text.primary'}}>
-        <MenuIcon/>
-      </IconButton>
-      <Drawer anchor="right" open={mobileOpen} onClose={() => setMobileOpen(false)}
-        sx={{'& .MuiDrawer-paper': {width: 288, maxWidth: 'calc(100vw - 32px)', bgcolor: '#12171d', backgroundImage: 'none'}}}>
-        <Box sx={{p: 2}}>
-          <Box sx={{display: 'flex', justifyContent: 'flex-end', mb: 2}}>
-            <IconButton aria-label="Close navigation" onClick={() => setMobileOpen(false)}><CloseIcon/></IconButton>
-          </Box>
-          {navigation}
-        </Box>
-      </Drawer>
-    </>}
-    <Box component="main" className="site-main" sx={{minWidth: 0, pr: desktop ? '240px' : 0, pt: desktop ? 0 : 5}}>
+    {navigation}
+    <Box component="main" className="site-main" sx={{minWidth:0,pt:'64px'}}>
       <Box sx={{maxWidth: 1120, mx: 'auto', px: {xs: 2, sm: 4, lg: 6}, py: {xs: 3, md: 5}}}>
         <Box component="section" id="home" className="page-section" aria-label="Home"><Home/></Box>
         <Box component="section" id="projects" className="page-section flow-section" aria-label="Projects"><Projects/></Box>

@@ -147,7 +147,7 @@ export default function IndiaMap({
           const f = features.find(f => f.id === id),
             p = projection(geoCentroid(main(f))),
             endpoint = id === round.start || id === round.end;
-          return <g key={id} pointerEvents="none">{endpoint && <circle cx={p[0]} cy={p[1]} r="5" fill={id === round.start ? '#d5e2f4' : '#f3d4c6'} stroke="#17212a" strokeWidth="1.5" />}<text x={p[0]} y={p[1] + (endpoint ? 21 : 4)} fill="#edf0f2" fontFamily="Manrope, sans-serif" fontSize="13" fontWeight="600" textAnchor="middle" paintOrder="stroke" stroke="#17212a" strokeWidth="3">{endpoint ? id : byId.get(id).name.split(' ').map(s => s[0]).slice(0, 2).join('')}</text></g>;
+          return <g key={id} pointerEvents="none">{endpoint && <circle cx={p[0]} cy={p[1]} r="5" fill={id === round.start ? '#d5e2f4' : '#f3d4c6'} stroke="#17212a" strokeWidth="1.5" />}<text x={p[0]} y={p[1] + (endpoint ? 21 : 4)} fill="#edf0f2" fontFamily="Montserrat Variable, sans-serif" fontSize="13" fontWeight="600" textAnchor="middle" paintOrder="stroke" stroke="#17212a" strokeWidth="3">{endpoint ? id : byId.get(id).name.split(' ').map(s => s[0]).slice(0, 2).join('')}</text></g>;
         })}</g></svg><Stack sx={{
       position: 'absolute',
       right: 10,

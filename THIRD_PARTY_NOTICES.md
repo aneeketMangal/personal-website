@@ -48,3 +48,18 @@ Book-jacket artwork belongs to its authors, illustrators and publishers and is i
 - React as a UI Runtime: an article by Dan Abramov, https://overreacted.io/react-as-a-ui-runtime/ . Its typographic shelf cover is custom presentation artwork, not a published book jacket. It is labeled Article.
 
 Thumbnails are resized/recompressed for the page. No personal ratings, reviews or reading notes have been invented.
+
+## Montserrat
+
+Montserrat Variable is bundled through @fontsource-variable/montserrat under the SIL Open Font License 1.1. Full license: public/assets/Montserrat-LICENSE.txt.
+
+
+## Atlas Antakshri place data
+
+Derived from GeoNames cities500 and countryInfo (https://download.geonames.org/export/dump/), retrieved 2026-10-25. Licensed CC BY 4.0 (https://creativecommons.org/licenses/by/4.0/). The dataset selects 40 uniquely named places per initial Latin letter, prioritizing countries, a curated set of familiar cities, capitals, and geographic diversity; city districts are excluded, using ASCII names and retaining GeoNames IDs and country codes. Names are normalized for game matching.
+
+
+## Rock Paper Scissors Battle
+
+Adapted from the site owner's repository https://github.com/aneeketMangal/rock-paper-scissors-battle at the owner's request. Uses the original rock, paper and scissors images and collision-conversion game concept, with a React/canvas implementation.
+

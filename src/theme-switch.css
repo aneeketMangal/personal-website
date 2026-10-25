@@ -1,0 +1,196 @@
+.hanging-theme-switch {
+  position: fixed;
+  top: 0;
+  left: auto;
+  right: 10px;
+  z-index: 1300;
+  width: 72px;
+  height: 154px;
+  padding: 0;
+  border: 0;
+  background: transparent;
+  color: inherit;
+  cursor: grab;
+  touch-action: none;
+  user-select: none;
+  filter: drop-shadow(0 9px 8px #0007);
+  -webkit-tap-highlight-color: transparent;
+}
+.hanging-theme-switch:active { cursor: grabbing; }
+.hanging-theme-switch:focus-visible { outline: 2px solid #e4b84f; outline-offset: 3px; border-radius: 0 0 35px 35px; }
+.switch-ceiling-pin {
+  position: absolute;
+  top: -5px;
+  left: 31px;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%,#fff0a6 0 12%,#c4912e 35%,#62400f 75%);
+  box-shadow: inset 0 -2px 3px #3d260e,0 2px 5px #0008;
+}
+.switch-red-wire {
+  position: absolute;
+  top: 4px;
+  left: 34px;
+  width: 6px;
+  height: 76px;
+  border-radius: 5px;
+  background: linear-gradient(90deg,#5d0710,#d4313e 38%,#fa7780 52%,#8d0d19 76%,#3d050a);
+  box-shadow: 1px 0 2px #0008;
+  transform-origin: top;
+}
+.switch-red-wire::after {
+  content: '';
+  position: absolute;
+  width: 13px;
+  height: 9px;
+  left: -3px;
+  bottom: -5px;
+  border-radius: 50%;
+  background: linear-gradient(#da3c48,#5d0710);
+  box-shadow: 0 2px 3px #0008;
+}
+.switch-pendant {
+  position: absolute;
+  top: 74px;
+  left: 5px;
+  width: 64px;
+  height: 66px;
+  border-radius: 32px 32px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: linear-gradient(135deg,#f5d675 0,#a96e15 26%,#f1c55d 48%,#71440e 78%,#ca942e 100%);
+  border: 1px solid #f7dc8d;
+  box-shadow: inset 0 2px 2px #fff7c7aa,inset 0 -5px 8px #4b280c99,5px 8px 14px #0008;
+  transform-origin: 50% -70px;
+  transform-style: preserve-3d;
+  animation: switch-sway 5s ease-in-out infinite;
+}
+.switch-arch {
+  width: 48px;
+  height: 43px;
+  margin-top: 6px;
+  border-radius: 24px 24px 14px 14px;
+  display: grid;
+  place-items: center;
+  background: radial-gradient(circle at 50% 35%,#d63841,#8c111c 68%,#560911);
+  border: 2px solid #6f430e;
+  box-shadow: inset 0 2px 5px #ff9b8c55,0 1px 0 #ffe19b;
+}
+.switch-arch::before,.switch-arch::after { content:'•'; position:absolute; top:37px; color:#f8d36d; font-size:14px; text-shadow:-16px 2px #f8d36d,16px 2px #f8d36d; }
+.switch-icon { display:grid; place-items:center; color:#fff0bb; filter:drop-shadow(0 2px 1px #43070a); }
+.switch-icon svg { font-size:25px; }
+.switch-label { margin-top:1px; color:#3d2108; font-size:7px; font-weight:800; letter-spacing:.13em; }
+.switch-tassel { position:absolute; bottom:-12px; width:12px; height:17px; border-radius:3px 3px 8px 8px; background:linear-gradient(90deg,#750812,#e54550,#690711); box-shadow:0 3px 4px #0007; }
+.switch-tassel::after { content:''; position:absolute; left:2px; right:2px; bottom:-5px; height:7px; background:repeating-linear-gradient(90deg,#8d0b16 0 2px,#e94e57 2px 3px); border-radius:0 0 6px 6px; }
+.hanging-theme-switch.is-pulling .switch-red-wire { animation:wire-tug 720ms cubic-bezier(.3,.8,.25,1); }
+.hanging-theme-switch.is-pulling .switch-pendant { animation:pendant-tug 720ms cubic-bezier(.25,.85,.3,1); }
+@keyframes wire-tug { 0%,100%{transform:scaleY(1)} 32%{transform:scaleY(1.25)} 58%{transform:scaleY(.97)} 76%{transform:scaleY(1.05)} }
+@keyframes pendant-tug { 0%{transform:translateY(0) rotate(0)} 30%{transform:translateY(19px) rotate(-4deg) rotateX(-8deg)} 55%{transform:translateY(-3px) rotate(5deg)} 76%{transform:translateY(2px) rotate(-2deg)} 100%{transform:translateY(0) rotate(0)} }
+@keyframes switch-sway { 0%,100%{transform:rotate(-1.5deg)} 50%{transform:rotate(1.5deg)} }
+@media (prefers-reduced-motion:reduce) { .switch-pendant,.hanging-theme-switch.is-pulling .switch-red-wire,.hanging-theme-switch.is-pulling .switch-pendant{animation:none} }
+@media (max-width:600px) { .hanging-theme-switch{transform:scale(.76);transform-origin:top right} }
+
+/* Compact Indian hanging bed-switch form. */
+.hanging-theme-switch { width:60px; height:176px; filter:drop-shadow(0 8px 7px #0007); }
+.switch-ceiling-pin { left:24px; }
+.switch-red-wire { left:27px; height:70px; }
+.switch-pendant.bed-switch-body {
+  top:67px;
+  left:5px;
+  width:50px;
+  height:91px;
+  border-radius:14px 14px 18px 18px;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  background:linear-gradient(90deg,#c9c7bd 0,#f7f5ea 13%,#fffef6 47%,#e7e4d8 78%,#b7b4aa 100%);
+  border:1px solid #aaa79d;
+  box-shadow:inset 2px 0 3px #fff,inset -3px 0 5px #96938a88,inset 0 -4px 5px #9f9b9088,4px 8px 12px #0008;
+  transform-origin:50% -64px;
+  transform-style:preserve-3d;
+  animation:switch-sway 5s ease-in-out infinite;
+}
+.bed-switch-body::before {
+  content:'';
+  position:absolute;
+  inset:4px;
+  border-radius:10px 10px 14px 14px;
+  border:1px solid #ffffffaa;
+  box-shadow:0 0 0 1px #8f8c8422;
+  pointer-events:none;
+}
+.bed-switch-neck {
+  position:absolute;
+  top:-8px;
+  left:17px;
+  width:16px;
+  height:11px;
+  border-radius:6px 6px 2px 2px;
+  background:linear-gradient(90deg,#aaa79e,#f5f2e7 45%,#aaa79e);
+  border:1px solid #8d8a82;
+  box-shadow:inset 0 1px #fff;
+}
+.bed-switch-rocker {
+  position:relative;
+  z-index:1;
+  width:29px;
+  height:47px;
+  margin-top:10px;
+  border-radius:7px;
+  display:grid;
+  grid-template-rows:1fr 1fr;
+  align-items:center;
+  justify-items:center;
+  color:#3f403e;
+  font:700 9px/1 Arial,sans-serif;
+  background:linear-gradient(#f8f7f1,#d5d3ca);
+  border:1px solid #918f88;
+  box-shadow:0 2px 4px #5555,inset 0 1px #fff;
+  transition:box-shadow 180ms ease,transform 180ms ease;
+  overflow:hidden;
+}
+.bed-switch-rocker::after { content:''; position:absolute; left:2px; right:2px; top:50%; border-top:1px solid #aaa79e; }
+.bed-switch-rocker.is-dark { transform:perspective(80px) rotateX(-5deg); box-shadow:0 3px 5px #5556,inset 0 -8px 9px #aaa79e; }
+.bed-switch-rocker.is-light { transform:perspective(80px) rotateX(5deg); box-shadow:0 1px 3px #5555,inset 0 8px 9px #aaa79e; }
+.bed-switch-state { z-index:1; margin-top:5px; color:#565650; font:700 7px/1 Arial,sans-serif; letter-spacing:.12em; }
+.bed-switch-rating { z-index:1; margin-top:4px; color:#7b7972; font:600 5px/1 Arial,sans-serif; letter-spacing:.03em; }
+
+/* The wall clamp stays fixed; the switch body drags while this cord follows it. */
+.switch-fixed-clamp {
+  position:fixed;
+  z-index:1301;
+  top:-5px;
+  right:19px;
+  width:15px;
+  height:13px;
+  border-radius:2px 2px 7px 7px;
+  background:linear-gradient(90deg,#85837d,#f0eee5 35%,#a7a49b 72%,#696761);
+  border:1px solid #64615c;
+  box-shadow:inset 0 1px #fff,0 3px 5px #0008;
+  pointer-events:none;
+}
+.switch-fixed-clamp::after { content:''; position:absolute; left:5px; bottom:2px; width:4px; height:4px; border-radius:50%; background:#5a5853; box-shadow:inset 0 1px 1px #222; }
+.switch-cord-layer { position:fixed; inset:0; z-index:1298; width:100vw; height:100vh; overflow:visible; pointer-events:none; }
+.switch-flex-wire { fill:none; stroke:#a61722; stroke-width:5; stroke-linecap:round; filter:drop-shadow(1px 2px 2px #0008); }
+.switch-cord-layer.is-pulling .switch-flex-wire { animation:cord-pulse 720ms ease; }
+@keyframes cord-pulse { 0%,100%{stroke-width:5} 34%{stroke-width:6.5} 65%{stroke-width:4.5} }
+.hanging-theme-switch { width:68px; height:120px; filter:drop-shadow(0 8px 7px #0007); }
+.switch-pendant.bed-switch-body { top:0; left:5px; width:58px; height:116px; border-radius:8px 8px 10px 10px; transform-origin:50% 0; animation:none; transition:transform 150ms cubic-bezier(.2,.8,.3,1); }
+.hanging-theme-switch.is-pulling .switch-pendant.bed-switch-body { animation:none; transform:translateY(14px); }
+.switch-pendant.bed-switch-body::before { border-radius:5px 5px 7px 7px; }
+.bed-switch-neck { top:-7px; left:20px; }
+.bed-switch-rocker { width:36px; height:60px; margin-top:18px; border-radius:4px; color:#42433f; font-size:8px; }
+.bed-switch-rocker.is-dark,.bed-switch-rocker.is-light { transform:none; }
+.bed-switch-rocker > span { width:100%; height:100%; display:grid; place-items:center; color:#555650; opacity:.78; }
+.bed-switch-rocker > span.is-selected { color:#20211f; font-weight:900; opacity:1; background:#ffffff35; }
+.bed-switch-screw { position:absolute; top:9px; width:5px; height:5px; border-radius:50%; background:radial-gradient(circle at 35% 30%,#f9f7ed,#85827a 70%); border:1px solid #77746d; box-shadow:0 1px 1px #0004; }
+.bed-switch-screw::after { content:''; position:absolute; left:0; right:0; top:1px; border-top:1px solid #5f5c56; transform:rotate(-20deg); }
+.bed-switch-screw.screw-left { left:7px; }
+.bed-switch-screw.screw-right { right:7px; }
+.bed-switch-screw.screw-bottom-left { top:auto; bottom:7px; left:7px; }
+.bed-switch-screw.screw-bottom-right { top:auto; right:7px; bottom:7px; }
+.bed-switch-state { margin-top:3px; color:#42433f; }
+.bed-switch-rating { margin-top:3px; color:#62635f; }
+@media (max-width:600px) { .hanging-theme-switch{transform:none} }

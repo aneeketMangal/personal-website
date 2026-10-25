@@ -12,15 +12,17 @@ import {books} from '../src/data/books.js';
 const execute = promisify(execFile);
 const project = fileURLToPath(new URL('..', import.meta.url));
 
-test('Education and Work Experience have scroll navigation targets; mobile has a hamburger and no footer', async () => {
+test('Education and Work Experience have scroll targets; navigation is a horizontal top bar with no footer', async () => {
   const app = await readFile(path.join(project, 'src/App.jsx'), 'utf8');
   const home = await readFile(path.join(project, 'src/components/Home.jsx'), 'utf8');
   assert.match(app, /\['education', 'Education'/);
   assert.match(app, /\['experience', 'Work Experience'/);
   assert.match(home, /id="education"/);
   assert.match(home, /id="experience"/);
-  assert.match(app, /aria-label="Open navigation"/);
-  assert.match(app, /<Drawer anchor="right"/);
+  assert.match(app, /className="top-navigation"/);
+  assert.match(app, /<Stack direction="row"/);
+  assert(!app.includes('Open navigation'));
+  assert(!app.includes('<Drawer'));
   assert(!app.includes('site-footer'));
 });
 

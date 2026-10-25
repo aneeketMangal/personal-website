@@ -1,0 +1,86 @@
+.modern-game-preview {
+  position: relative;
+  flex-direction: column;
+  gap: 20px;
+  isolation: isolate;
+  background: #182028;
+}
+.modern-game-preview::before,
+.modern-game-preview::after {
+  content: '';
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: -1;
+}
+.modern-game-preview::before {
+  width: 220px;
+  height: 220px;
+  right: -55px;
+  top: -90px;
+  background: currentColor;
+  opacity: .07;
+}
+.modern-game-preview::after {
+  width: 150px;
+  height: 150px;
+  left: -55px;
+  bottom: -80px;
+  border: 1px solid currentColor;
+  opacity: .15;
+}
+.preview-states { color: #b7d6c7; background: linear-gradient(145deg,#14282a,#171f27); }
+.preview-angle { color: #c6b9e2; background: linear-gradient(145deg,#252238,#181e27); }
+.preview-atlas { color: #b5c9e7; background: linear-gradient(145deg,#182b36,#171f27); }
+.preview-rps { color: #e5c49b; background: linear-gradient(145deg,#30271f,#1c2028); }
+.game-icon-orbit {
+  width: 92px;
+  height: 92px;
+  border-radius: 28px;
+  display: grid;
+  place-items: center;
+  background: color-mix(in srgb,currentColor 12%,transparent);
+  border: 1px solid color-mix(in srgb,currentColor 38%,transparent);
+  box-shadow: 0 20px 50px #0006, inset 0 1px #fff1;
+  transform: rotate(-4deg);
+}
+.game-icon-orbit svg { font-size: 52px; transform: rotate(4deg); }
+.preview-kicker.MuiTypography-root { font-size: .72rem; font-weight: 700; letter-spacing: .18em; color: currentColor; }
+.battle-icon-stack { display: flex; align-items: center; justify-content: center; }
+.battle-icon-stack > div {
+  width: 68px;
+  height: 68px;
+  border-radius: 22px;
+  display: grid;
+  place-items: center;
+  background: #ffffff0d;
+  border: 1px solid #ffffff26;
+  box-shadow: 0 14px 30px #0005;
+}
+.battle-icon-stack > div:nth-child(1) { transform: rotate(-9deg) translateX(8px); }
+.battle-icon-stack > div:nth-child(2) { z-index: 2; transform: translateY(-10px); }
+.battle-icon-stack > div:nth-child(3) { transform: rotate(9deg) translateX(-8px); }
+.battle-icon-stack svg { font-size: 36px; }
+.dedicated-game-page {
+  min-height: 100dvh;
+  background: var(--page-background,#000);
+}
+.MuiCssBaseline-root,
+html,
+body,
+#root {
+  background: #000 !important;
+}
+html[data-theme='light'] {
+  --page-background: #f5efe2;
+}
+html[data-theme='light'],
+html[data-theme='light'] body,
+html[data-theme='light'] #root {
+  background: #f5efe2 !important;
+}
+.page-section,
+.section-anchor {
+  scroll-margin-top: 80px;
+}
+
