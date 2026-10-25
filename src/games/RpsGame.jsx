@@ -3,11 +3,23 @@ import {Alert,Box,Button,Chip,Stack,Typography,useMediaQuery} from '@mui/materia
 import {counts,createBattle,piece,step,types} from './rps-engine';
 
 function drawPiece(ctx,p) {
-  const icons={rock:'✊',paper:'✋',scissors:'✌️'};
-  ctx.save();ctx.translate(p.x,p.y);ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='24px "Segoe UI Emoji","Apple Color Emoji",sans-serif';
-  ctx.shadowColor='#0d151b66';ctx.shadowBlur=5;ctx.shadowOffsetY=2;ctx.fillText(icons[p.type],0,1);
+  const palette={rock:['#d7e0e7','#647888'],paper:['#f8f3dc','#b98d28'],scissors:['#f4d2c8','#a25f54']}[p.type];
+  ctx.save();ctx.translate(p.x,p.y);ctx.lineCap='round';ctx.lineJoin='round';ctx.shadowColor='#0d151b66';ctx.shadowBlur=5;ctx.shadowOffsetY=2;
+  ctx.beginPath();ctx.arc(0,0,13,0,Math.PI*2);ctx.fillStyle=palette[0];ctx.fill();ctx.strokeStyle=palette[1];ctx.lineWidth=1.5;ctx.stroke();ctx.shadowBlur=0;
+  if(p.type==='rock'){
+    ctx.beginPath();ctx.moveTo(-8,4);ctx.lineTo(-6,-5);ctx.lineTo(-1,-9);ctx.lineTo(7,-6);ctx.lineTo(9,2);ctx.lineTo(5,8);ctx.lineTo(-4,9);ctx.closePath();ctx.fillStyle='#718697';ctx.strokeStyle='#425563';ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.moveTo(-5,-4);ctx.lineTo(0,-7);ctx.lineTo(6,-4);ctx.moveTo(0,-7);ctx.lineTo(1,6);ctx.strokeStyle='#b9c6cf';ctx.lineWidth=1.2;ctx.stroke();
+  }else if(p.type==='paper'){
+    ctx.beginPath();ctx.moveTo(-7,-9);ctx.lineTo(3,-9);ctx.lineTo(8,-4);ctx.lineTo(8,9);ctx.lineTo(-7,9);ctx.closePath();ctx.fillStyle='#fff9df';ctx.strokeStyle='#9b7620';ctx.fill();ctx.stroke();
+    ctx.beginPath();ctx.moveTo(3,-9);ctx.lineTo(3,-4);ctx.lineTo(8,-4);ctx.moveTo(-4,0);ctx.lineTo(5,0);ctx.moveTo(-4,4);ctx.lineTo(4,4);ctx.strokeStyle='#b28b2b';ctx.lineWidth=1.2;ctx.stroke();
+  }else{
+    ctx.strokeStyle='#825047';ctx.lineWidth=2.4;ctx.beginPath();ctx.moveTo(-3,2);ctx.lineTo(7,-7);ctx.moveTo(3,2);ctx.lineTo(-7,-7);ctx.stroke();
+    ctx.fillStyle='#df9485';ctx.beginPath();ctx.arc(-5,6,3.5,0,Math.PI*2);ctx.arc(5,6,3.5,0,Math.PI*2);ctx.fill();ctx.stroke();ctx.fillStyle='#f8eee9';ctx.beginPath();ctx.arc(-5,6,1.5,0,Math.PI*2);ctx.arc(5,6,1.5,0,Math.PI*2);ctx.fill();
+  }
   ctx.restore();
 }
+
+export function RpsMark(){return <svg viewBox="0 0 92 52" aria-hidden="true" className="rps-mark"><g transform="translate(20 26)"><circle r="18" fill="#d7e0e7" stroke="#647888"/><path d="M-10 5-8-7-1-12 9-8 12 3 7 11-6 12Z" fill="#718697" stroke="#425563" strokeWidth="2"/><path d="m-6-5 7-4 7 4M1-9 2 8" fill="none" stroke="#b9c6cf" strokeWidth="1.5"/></g><g transform="translate(46 26)"><circle r="18" fill="#f8f3dc" stroke="#b98d28"/><path d="M-9-12H4l7 7v17H-9Z" fill="#fff9df" stroke="#9b7620" strokeWidth="2"/><path d="M4-12v7h7M-5 1h11M-5 6h10" fill="none" stroke="#b28b2b" strokeWidth="1.5"/></g><g transform="translate(72 26)"><circle r="18" fill="#f4d2c8" stroke="#a25f54"/><path d="m-4 2 10-11M4 2-7-9" stroke="#825047" strokeWidth="3" strokeLinecap="round"/><circle cx="-6" cy="8" r="5" fill="#df9485" stroke="#825047"/><circle cx="6" cy="8" r="5" fill="#df9485" stroke="#825047"/><circle cx="-6" cy="8" r="2" fill="#f8eee9"/><circle cx="6" cy="8" r="2" fill="#f8eee9"/></g></svg>}
 
 function PieceIcon({type}) {
   const ref=useRef(null);

@@ -10,7 +10,7 @@ import GameBoundary from './GameBoundary';
 // Eager imports: opening a game never fetches a potentially stale lazy chunk.
 import StatesGame from '../games/StatesGame';
 import AngleGame from '../games/AngleGame';
-import RpsGame from '../games/RpsGame';
+import RpsGame,{RpsMark} from '../games/RpsGame';
 import ProbableGame from '../games/ProbableGame';
 import {storageKey as statesKey} from '../games/states-engine';
 import {key as angleKey} from '../games/angle-engine';
@@ -62,7 +62,5 @@ export default function Games({game, onSelect}) {
 }
 
 function StackedBattleIcons() {
-  return <Box className="mini-battle-icons" aria-hidden="true">
-    <span>✊</span><span>✋</span><span>✌️</span>
-  </Box>;
+  return <Box className="mini-battle-icons" aria-hidden="true"><RpsMark/></Box>;
 }
