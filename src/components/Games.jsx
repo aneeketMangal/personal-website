@@ -1,7 +1,6 @@
 import React from 'react';
-import {Box, Button, Card, CardContent, Typography} from '@mui/material';
+import {Box, Button, Typography} from '@mui/material';
 import ArrowBack from '@mui/icons-material/ArrowBack';
-import ArrowForward from '@mui/icons-material/ArrowForward';
 import MapOutlined from '@mui/icons-material/MapOutlined';
 import ExploreOutlined from '@mui/icons-material/ExploreOutlined';
 import LandscapeOutlined from '@mui/icons-material/LandscapeOutlined';
@@ -39,46 +38,25 @@ export default function Games({game, onSelect}) {
           </GameBoundary>
         </Box>
       ) : (
-        <Box className="games-grid">
-          <Card>
-            <Box className="game-preview modern-game-preview preview-states">
-              <Box className="game-icon-orbit"><MapOutlined/></Box>
-              <Typography className="preview-kicker">FIND THE ROUTE</Typography>
+        <Box className="project-list game-list">
+          {[
+            {slug:'2-states',title:'2 States',subtext:'Geography',description:'Connect two Indian states using shared land borders.',icon:<MapOutlined/>},
+            {slug:'rps',title:'Rock Paper Scissors Battle',subtext:'Simulation',description:'Watch rocks, paper and scissors collide and convert. Which team takes over?',icon:<StackedBattleIcons/>},
+            {slug:'angle',title:'What’s Your Angle',subtext:'Geometry',description:'Drag the handle to match a target angle. You have four attempts.',icon:<ExploreOutlined/>}
+          ].map((item,index)=><Box component="article" key={item.slug} className="project-row game-row" role="link" tabIndex={0}
+            aria-labelledby={`game-${item.slug}-title`} onClick={()=>onSelect(item.slug)} onKeyDown={event=>{
+              if(event.key==='Enter'||event.key===' '){event.preventDefault();onSelect(item.slug);}
+            }}>
+            <Typography className="row-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</Typography>
+            <Box sx={{minWidth:0}}>
+              <Box className="game-row-heading">
+                <Typography id={`game-${item.slug}-title`} variant="h4" component="h3" sx={{fontWeight:700}}>{item.title}</Typography>
+                <Box className="game-row-icon" aria-hidden="true">{item.icon}</Box>
+              </Box>
+              <Typography className="project-subtext" sx={{mt:.8,mb:1}}>{item.subtext}</Typography>
+              <Typography sx={{color:'text.secondary',lineHeight:1.7,maxWidth:790}}>{item.description}</Typography>
             </Box>
-            <CardContent sx={{p: 3}}>
-              <Typography variant="h3" component="h3">2 States</Typography>
-              <Typography sx={{color: 'text.secondary', my: 2}}>
-                Connect two Indian states using shared land borders.
-              </Typography>
-              <Button variant="contained" endIcon={<ArrowForward/>}
-                aria-label="Play 2 States" onClick={() => onSelect('2-states')}>Play</Button>
-            </CardContent>
-          </Card>
-          <Card>
-            <Box className="game-preview modern-game-preview preview-rps">
-              <StackedBattleIcons/>
-              <Typography className="preview-kicker">LAST TEAM STANDING</Typography>
-            </Box>
-            <CardContent sx={{p:3}}>
-              <Typography variant="h3" component="h3">Rock Paper Scissors Battle</Typography>
-              <Typography sx={{color:'text.secondary',my:2}}>Watch rocks, paper and scissors collide and convert. Which team takes over?</Typography>
-              <Button variant="contained" endIcon={<ArrowForward/>} aria-label="Play Rock Paper Scissors Battle" onClick={() => onSelect('rps')}>Play</Button>
-            </CardContent>
-          </Card>
-          <Card>
-            <Box className="game-preview modern-game-preview preview-angle">
-              <Box className="game-icon-orbit"><ExploreOutlined/></Box>
-              <Typography className="preview-kicker">MATCH THE ANGLE</Typography>
-            </Box>
-            <CardContent sx={{p: 3}}>
-              <Typography variant="h3" component="h3">What’s Your Angle</Typography>
-              <Typography sx={{color: 'text.secondary', my: 2}}>
-                Drag the handle to match a target angle. You have four attempts.
-              </Typography>
-              <Button variant="contained" color="secondary" endIcon={<ArrowForward/>}
-                aria-label="Play What’s Your Angle" onClick={() => onSelect('angle')}>Play</Button>
-            </CardContent>
-          </Card>
+          </Box>)}
         </Box>
       )}
     </>
@@ -86,7 +64,7 @@ export default function Games({game, onSelect}) {
 }
 
 function StackedBattleIcons() {
-  return <Box className="battle-icon-stack" aria-hidden="true">
-    <Box><LandscapeOutlined/></Box><Box><DescriptionOutlined/></Box><Box><ContentCutOutlined/></Box>
+  return <Box className="mini-battle-icons" aria-hidden="true">
+    <LandscapeOutlined/><DescriptionOutlined/><ContentCutOutlined/>
   </Box>;
 }

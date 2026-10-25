@@ -35,7 +35,8 @@ export default function Projects({project:slug,onSelect}) {
     const action=destination(selected);
     return <Box className="project-detail-page" data-testid="project-detail">
       <Button startIcon={<ArrowBack/>} onClick={()=>onSelect(null)} sx={{mb:3}}>All projects</Button>
-      <Typography variant="h2" component="h2" sx={{mb:2}}>{selected.title}</Typography>
+      <Typography variant="h2" component="h2" sx={{mb:.75}}>{selected.title}</Typography>
+      <Typography className="project-subtext" sx={{mb:2}}>{selected.subtext}</Typography>
       <Typography sx={{color:'text.secondary',fontSize:{xs:'1.05rem',md:'1.2rem'},lineHeight:1.75,maxWidth:820}}>{selected.overview||selected.description}</Typography>
       <Stack direction="row" spacing={1} useFlexGap sx={{flexWrap:'wrap',my:3}}>
         {selected.tech.map(tech=><Chip label={tech} variant="outlined" key={tech}/>) }
@@ -63,6 +64,7 @@ export default function Projects({project:slug,onSelect}) {
           <Typography className="row-number" aria-hidden="true">{String(index + 1).padStart(2, '0')}</Typography>
           <Box sx={{minWidth: 0}}>
             <Typography id={`project-${index}-title`} variant="h4" component="h3" sx={{fontWeight: 700, mb: .8}}>{project.title}</Typography>
+            <Typography className="project-subtext" sx={{mb:1}}>{project.subtext}</Typography>
             <Typography sx={{color: 'text.secondary', lineHeight: 1.7, maxWidth: 790}}>{project.description}</Typography>
             <Stack direction="row" spacing={1} useFlexGap sx={{flexWrap: 'wrap', mt: 2}}>
               {project.tech.map(tech => <Chip label={tech} size="small" variant="outlined" key={tech}/>)}

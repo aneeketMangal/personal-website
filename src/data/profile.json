@@ -65,6 +65,7 @@
     {
       "slug": "devassist-mcp",
       "title": "DevAssist MCP Server",
+      "subtext": "Developer tooling",
       "description": "Production-grade tooling for context-aware engineering documents, RAG-powered codebase queries, and semantically grounded UML diagrams. Adopted by more than 10 engineering teams.",
       "category": "MICROSOFT · 2025",
       "tech": [
@@ -87,6 +88,7 @@
     {
       "slug": "gmail-file-system",
       "title": "Gmail File System",
+      "subtext": "Operating systems",
       "description": "A FUSE filesystem that mounts a remote mailbox as a local directory, using IMAP to explore an unconventional storage backend.",
       "category": "SYSTEMS",
       "tech": [
@@ -109,6 +111,7 @@
     {
       "slug": "risc-v-simulator",
       "title": "RISC-V Simulator",
+      "subtext": "Computer architecture",
       "description": "A team-built simulator for 32-bit RISC-V execution, with pipelining, forwarding, cache configuration, and a step-through graphical interface.",
       "category": "COLLABORATIVE ACADEMIC PROJECT",
       "tech": [
@@ -132,6 +135,7 @@
     {
       "slug": "pg-admissions-portal",
       "title": "PG Admissions Portal",
+      "subtext": "Full-stack development",
       "description": "A responsive postgraduate admissions platform with merit-list generation, academic configuration, and actionable data visualizations for administrators.",
       "category": "IIT ROPAR · 2022",
       "tech": [
@@ -154,6 +158,7 @@
     {
       "slug": "gamedome",
       "title": "GameDome",
+      "subtext": "Android development",
       "description": "A Flutter arcade-game collection with authentication, local persistence, animations, and global chat powered by a Flask REST API.",
       "category": "PERSONAL PROJECT",
       "tech": [
