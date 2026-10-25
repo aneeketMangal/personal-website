@@ -1,0 +1,17 @@
+{
+  "checks": [
+    "One continuous page, correct project order, no Johnson/CV, original profile design and Resume link retained",
+    "Navigation scrolls without replacing content; active item also follows manual scrolling",
+    "BOTH games open offline after initial load: no lazy game files and no whole-page crash",
+    "2 States autocomplete, route completion, persistence, hints and restart work inline",
+    "Angle pointer dragging, ±5° success, four attempts, hidden answer, persistence and keyboard work inline",
+    "All 11 reading-list entries have working local covers, descriptions, source links and accessible animated modals",
+    "Seven widths (320–1500), mobile scroll navigation, long region names and horizontal shelves have no overflow",
+    "Real touch dragging, navigation, books and reduced motion on iPhone SE, iPhone 13 and Pixel 5",
+    "Corrupt saved rounds and disabled browser storage recover without crashing",
+    "A game-only failure leaves the entire page available and can be retried without reload",
+    "No unexpected JavaScript exceptions or failed HTTP assets"
+  ],
+  "errors": [],
+  "failures": []
+}

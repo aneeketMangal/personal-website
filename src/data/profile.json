@@ -1,0 +1,224 @@
+{
+  "jobs": [
+    {
+      "company": "Uber",
+      "dates": "Oct 2025 — Present",
+      "role": "Software Engineer II",
+      "location": "Bengaluru, Karnataka",
+      "bullets": [
+        "Built and globally scaled a high-throughput, SLA-aware task allocation mechanism that replaced manual queue selection, contributing to **$10M+ in annual operational savings** through an improved document-processing rate.",
+        "Architected and drove the frontend re-architecture and UX redesign of the earner document adjudication platform. The config-driven, no-code architecture is **projected** to reduce feature development time by **85%** and agent handling time by **15%** through UX and accessibility improvements.",
+        "Shipped GenAI-powered instruction summarization to streamline reviewer workflows, reducing agent handling time by **10%** and driving an **estimated $8M+ in annual cost savings**."
+      ],
+      "homeHighlights": [
+        "Built a globally scaled, SLA-aware task allocation system, contributing to **$10M+ in annual operational savings**.",
+        "Led frontend architecture and UX redesign for document adjudication, with **projected** reductions of **85%** in development time and **15%** in handling time.",
+        "Shipped GenAI instruction summaries, reducing handling time by **10%** and driving an **estimated $8M+ in annual savings**."
+      ]
+    },
+    {
+      "company": "Microsoft",
+      "dates": "Jul 2023 — Oct 2025",
+      "role": "Software Engineer",
+      "location": "Hyderabad, Telangana",
+      "bullets": [
+        "Delivered the end-to-end migration of a foundational legacy service handling **10B+ daily traffic** and its supporting infrastructure to .NET Core, reducing memory usage by approximately **40%** and enabling partner onboarding.",
+        "Led the release and performance transformation of an enterprise tool, cutting package size by approximately **50%**, improving load times, and overhauling release pipelines.",
+        "Engineered the migration of Exchange Admin Center, serving **2M+ monthly active users**, to Kubernetes. Removed critical blockers and designed a zero-downtime rollout strategy.",
+        "Promoted to **L60 in September 2024**; received multiple internal awards for technical excellence, leadership, and impact on high-priority projects."
+      ],
+      "homeHighlights": [
+        "Migrated a foundational service handling **10B+ daily traffic** to .NET Core, reducing memory use by about **40%**.",
+        "Moved Exchange Admin Center, serving **2M+ monthly active users**, to Kubernetes with a zero-downtime rollout strategy.",
+        "Improved an enterprise tool, cutting package size by about **50%** and overhauling release pipelines.",
+        "Promoted to **L60 in September 2024**; received multiple internal awards for technical excellence, leadership, and impact on high-priority projects."
+      ]
+    },
+    {
+      "company": "Curer",
+      "dates": "Nov 2022 — Feb 2023",
+      "role": "Software Engineer Intern",
+      "location": "Remote",
+      "bullets": [
+        "Built the In-Patient Department flow end-to-end, expanding the product offering across Django, Node.js, AngularJS, Flutter, and Firebase."
+      ],
+      "homeHighlights": [
+        "Built the In-Patient Department flow end-to-end across Django, Node.js, AngularJS, Flutter, and Firebase."
+      ]
+    },
+    {
+      "company": "Microsoft",
+      "dates": "May 2022 — Jul 2022",
+      "role": "Software Engineer Intern",
+      "location": "Remote",
+      "bullets": [
+        "Enabled a high-priority migration by translating legacy API contracts while maintaining backward compatibility, reducing latency for most endpoints by **30%**.",
+        "Worked across the stack in C, React, and Redux."
+      ],
+      "homeHighlights": [
+        "Translated legacy API contracts while maintaining backward compatibility, reducing latency for most endpoints by **30%**.",
+        "Worked across the stack in C, React, and Redux."
+      ]
+    }
+  ],
+  "projects": [
+    {
+      "title": "DevAssist MCP Server",
+      "description": "Production-grade tooling for context-aware engineering documents, RAG-powered codebase queries, and semantically grounded UML diagrams. Adopted by more than 10 engineering teams.",
+      "category": "MICROSOFT · 2025",
+      "tech": [
+        "MCP",
+        "RAG",
+        "Developer experience"
+      ],
+      "url": "https://drive.google.com/file/d/1QctsHCG83CnhnHtt3D_zHy4kSPafeu7g/view?usp=sharing",
+      "link": "View resume"
+    },
+    {
+      "title": "Gmail File System",
+      "description": "A FUSE filesystem that mounts a remote mailbox as a local directory, using IMAP to explore an unconventional storage backend.",
+      "category": "SYSTEMS",
+      "tech": [
+        "C",
+        "FUSE",
+        "libcurl",
+        "IMAP"
+      ],
+      "url": "https://github.com/aneeketMangal/Gmail-File-System",
+      "link": "View repository"
+    },
+    {
+      "title": "RISC-V Simulator",
+      "description": "A team-built simulator for 32-bit RISC-V execution, with pipelining, forwarding, cache configuration, and a step-through graphical interface.",
+      "category": "COLLABORATIVE ACADEMIC PROJECT",
+      "tech": [
+        "Python",
+        "PyQt5",
+        "Computer architecture"
+      ],
+      "url": "https://github.com/aneeketMangal/RISC-V_Simulator",
+      "link": "View repository"
+    },
+    {
+      "title": "PG Admissions Portal",
+      "description": "A responsive postgraduate admissions platform with merit-list generation, academic configuration, and actionable data visualizations for administrators.",
+      "category": "IIT ROPAR · 2022",
+      "tech": [
+        "MongoDB",
+        "Express",
+        "React",
+        "Node.js"
+      ],
+      "url": "https://drive.google.com/file/d/1V1YqgCRFs8J76fwSykuYxXF5q5gm-9QB/view?usp=sharing",
+      "link": "Watch demo"
+    },
+    {
+      "title": "GameDome",
+      "description": "A Flutter arcade-game collection with authentication, local persistence, animations, and global chat powered by a Flask REST API.",
+      "category": "PERSONAL PROJECT",
+      "tech": [
+        "Flutter",
+        "Dart",
+        "Flask",
+        "REST API"
+      ],
+      "url": "https://github.com/aneeketMangal/theGameDome",
+      "link": "View repository"
+    }
+  ],
+  "cvProjects": [
+    {
+      "title": "DevAssist MCP Server",
+      "dates": "Jul 2025 — Oct 2025",
+      "caption": "Professional project · Microsoft",
+      "bullets": [
+        "Designed and deployed a production-grade MCP server for rich, context-aware document generation and RAG-powered codebase queries. Contributed to a **100% increase** in TSGs and incident postmortems generated.",
+        "Built a UML diagram generation module grounded in semantic code queries to reduce hallucinations.",
+        "Adopted by **10+ engineering teams**, with continued development and maintenance following handoff."
+      ]
+    },
+    {
+      "title": "PG Admissions Portal",
+      "dates": "Jan 2022 — Apr 2022",
+      "caption": "IIT Ropar · MERN stack · Demo video ↗",
+      "bullets": [
+        "Deployed a full-stack, responsive postgraduate admissions portal to streamline the end-to-end admissions process.",
+        "Built administrative tooling for merit lists, programs, academic-cycle configuration, and interactive data visualizations."
+      ]
+    }
+  ],
+  "summary": "Software engineer working across high-throughput platforms, enterprise infrastructure, developer productivity, and user-facing applications. My work spans globally scaled task allocation, large-service migrations, AI-assisted engineering tools, and config-driven frontend architecture.",
+  "skills": [
+    {
+      "title": "Languages",
+      "items": [
+        "Python",
+        "C",
+        "C++",
+        "TypeScript",
+        "C#",
+        "JavaScript",
+        "Go"
+      ]
+    },
+    {
+      "title": "Frameworks",
+      "items": [
+        "React",
+        ".NET",
+        "Flutter",
+        "Flask",
+        "Django",
+        "Node.js"
+      ]
+    },
+    {
+      "title": "Data & infrastructure",
+      "items": [
+        "Redis",
+        "PostgreSQL",
+        "MongoDB",
+        "Kubernetes",
+        "Kafka"
+      ]
+    },
+    {
+      "title": "Developer & AI tooling",
+      "items": [
+        "Git",
+        "PowerShell",
+        "MCP",
+        "LangGraph"
+      ]
+    }
+  ],
+  "highlights": [
+    {
+      "year": "2021",
+      "title": "ICPC",
+      "description": "Rank 103, Gwalior–Pune Regional (college rank 2); rank 265, Amritapuri Prelims."
+    },
+    {
+      "year": "2019",
+      "title": "JEE",
+      "description": "99.84 percentile in JEE Main; All India Rank 1892 in JEE Advanced."
+    },
+    {
+      "year": "PEAKS",
+      "title": "Competitive programming",
+      "description": "Codeforces: Expert, maximum rating 1630. CodeChef: 4 stars, maximum rating 1974."
+    }
+  ],
+  "leadership": [
+    {
+      "title": "Inter IIT Tech Meet",
+      "dates": "2023",
+      "description": "Oversaw IIT Ropar’s delegation at the Inter IIT Tech Meet hosted by IIT Kanpur."
+    },
+    {
+      "title": "Coding Club, IIT Ropar",
+      "dates": "2020 — 2022",
+      "description": "Coordinator (2020–2021) and mentor (2021–2022), supporting coding competitions, workshops, and the student programming community."
+    }
+  ]
+}

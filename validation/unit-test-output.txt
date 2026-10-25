@@ -1,0 +1,128 @@
+
+> aneeket-portfolio@2.0.0 test
+> node --test tests/*.test.mjs
+
+TAP version 13
+# Subtest: 36 regions with unique IDs and symmetric land borders
+ok 1 - 36 regions with unique IDs and symmetric land borders
+  ---
+  duration_ms: 1.9225
+  type: 'test'
+  ...
+# Subtest: every random route is solvable, has intermediates, and gets four extra guesses
+ok 2 - every random route is solvable, has intermediates, and gets four extra guesses
+  ---
+  duration_ms: 53.620775
+  type: 'test'
+  ...
+# Subtest: correct, duplicate, endpoint, unknown and island guesses
+ok 3 - correct, duplicate, endpoint, unknown and island guesses
+  ---
+  duration_ms: 0.35547
+  type: 'test'
+  ...
+# Subtest: weighted routing, sequential hints, and reveal
+ok 4 - weighted routing, sequential hints, and reveal
+  ---
+  duration_ms: 0.40545
+  type: 'test'
+  ...
+# Subtest: guess limit ends an unsuccessful round
+ok 5 - guess limit ends an unsuccessful round
+  ---
+  duration_ms: 0.403449
+  type: 'test'
+  ...
+# Subtest: state round persists; malformed storage is discarded
+ok 6 - state round persists; malformed storage is discarded
+  ---
+  duration_ms: 0.393651
+  type: 'test'
+  ...
+# Subtest: angle normalization, wraparound, and directional feedback
+ok 7 - angle normalization, wraparound, and directional feedback
+  ---
+  duration_ms: 0.24526
+  type: 'test'
+  ...
+# Subtest: angle matches within five degrees, including circular wraparound
+ok 8 - angle matches within five degrees, including circular wraparound
+  ---
+  duration_ms: 0.191591
+  type: 'test'
+  ...
+# Subtest: angle has exactly four attempts and requires moving the handle
+ok 9 - angle has exactly four attempts and requires moving the handle
+  ---
+  duration_ms: 0.44164
+  type: 'test'
+  ...
+# Subtest: fresh angles are valid and saved rounds survive reload
+ok 10 - fresh angles are valid and saved rounds survive reload
+  ---
+  duration_ms: 0.66147
+  type: 'test'
+  ...
+# Subtest: Education and Work Experience have scroll navigation targets; mobile has a hamburger and no footer
+ok 11 - Education and Work Experience have scroll navigation targets; mobile has a hamburger and no footer
+  ---
+  duration_ms: 6.28132
+  type: 'test'
+  ...
+# Subtest: Projects use the shared rounded social-link pills and keep Watch Demo muted
+ok 12 - Projects use the shared rounded social-link pills and keep Watch Demo muted
+  ---
+  duration_ms: 2.489599
+  type: 'test'
+  ...
+# Subtest: Games navigation has a gold shimmer and a reduced-motion fallback
+ok 13 - Games navigation has a gold shimmer and a reduced-motion fallback
+  ---
+  duration_ms: 1.41694
+  type: 'test'
+  ...
+# Subtest: Microsoft full-time experience includes L60 promotion and internal awards
+ok 14 - Microsoft full-time experience includes L60 promotion and internal awards
+  ---
+  duration_ms: 0.3673
+  type: 'test'
+  ...
+# Subtest: profile heading and introduction use the requested wording
+ok 15 - profile heading and introduction use the requested wording
+  ---
+  duration_ms: 1.1412
+  type: 'test'
+  ...
+# Subtest: real reading list has ten books and one correctly identified article, with local covers
+ok 16 - real reading list has ten books and one correctly identified article, with local covers
+  ---
+  duration_ms: 1.90867
+  type: 'test'
+  ...
+# Subtest: project order includes RISC-V above PG plus GameDome, without Johnson or website easter eggs
+ok 17 - project order includes RISC-V above PG plus GameDome, without Johnson or website easter eggs
+  ---
+  duration_ms: 1.01297
+  type: 'test'
+  ...
+# Subtest: games are imported eagerly, not through fragile delayed game chunks
+ok 18 - games are imported eagerly, not through fragile delayed game chunks
+  ---
+  duration_ms: 2.40061
+  type: 'test'
+  ...
+# Subtest: publishing keeps old assets for open tabs and rejects an incomplete entry point
+ok 19 - publishing keeps old assets for open tabs and rejects an incomplete entry point
+  ---
+  duration_ms: 125.905238
+  type: 'test'
+  ...
+1..19
+# tests 19
+# suites 0
+# pass 19
+# fail 0
+# cancelled 0
+# skipped 0
+# todo 0
+# duration_ms 207.586842

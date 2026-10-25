@@ -1,0 +1,12 @@
+{
+  "source": "geoBoundaries gbOpen / DataMeet India community / Election Commission of India",
+  "release": "9469f09",
+  "sourceURL": "https://media.githubusercontent.com/media/wmgeolab/geoBoundaries/9469f09/releaseData/gbOpen/IND/ADM1/geoBoundaries-IND-ADM1_simplified.geojson",
+  "api": "https://www.geoboundaries.org/api/current/gbOpen/IND/ADM1/",
+  "license": "CC BY 2.5 India",
+  "licenseURL": "https://creativecommons.org/licenses/by/2.5/in/",
+  "changes": "English labels normalized; ring winding normalized for D3; topology simplified retaining 15% of weighted vertices; graph derived from shared boundary arcs. Puducherry connects through Tamil Nadu only to prevent remote-exclave shortcuts.",
+  "regionCount": 36,
+  "stateCount": 28,
+  "unionTerritoryCount": 8
+}

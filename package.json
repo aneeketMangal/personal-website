@@ -1,0 +1,28 @@
+{
+  "name": "aneeket-portfolio",
+  "version": "2.0.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build --outDir .build && node scripts/publish.mjs",
+    "preview": "vite preview --host 0.0.0.0",
+    "test": "node --test tests/*.test.mjs",
+    "test:browser": "node tests/acceptance.mjs"
+  },
+  "dependencies": {
+    "@emotion/react": "11.14.0",
+    "@emotion/styled": "11.14.1",
+    "@mui/icons-material": "9.5.0",
+    "@mui/material": "9.5.0",
+    "d3": "7.9.0",
+    "react": "19.3.0",
+    "react-dom": "19.3.0",
+    "topojson-client": "3.1.0"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-react": "6.1.2",
+    "playwright-core": "1.61.1",
+    "vite": "8.3.4"
+  }
+}
