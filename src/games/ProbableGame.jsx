@@ -1,6 +1,7 @@
 import React, {useCallback, useEffect, useMemo, useState} from 'react';
-import {Box, Button, Stack, Typography} from '@mui/material';
+import {Box, Button, Dialog, DialogActions, DialogContent, DialogTitle, IconButton, Paper, Stack, Tooltip, Typography} from '@mui/material';
 import Replay from '@mui/icons-material/Replay';
+import HelpOutline from '@mui/icons-material/HelpOutlined';
 import wordsData from './probable-words.json';
 
 const ROWS=6;
@@ -12,6 +13,7 @@ export default function ProbableGame(){
   const [current,setCurrent]=useState('');
   const [guesses,setGuesses]=useState([]);
   const [message,setMessage]=useState('Every clue has a little randomness. Trust your vocabulary, not your luck.');
+  const [help,setHelp]=useState(false);
   const won=guesses.some(guess=>guess.actual===target);
   const over=won||guesses.length===ROWS;
   const statuses=useMemo(()=>{
@@ -45,19 +47,29 @@ export default function ProbableGame(){
   },[move]);
   const rows=[...guesses.map(guess=>guess.shown),...(over?[]:[current]),...Array(Math.max(0,ROWS-guesses.length-(over?0:1))).fill('')];
   return <Box className="probable-game">
-    <Box className="probable-heading">
-      <Box><Typography variant="h2" component="h2">Probable</Typography><Typography sx={{color:'text.secondary'}}>A Wordle-style game where the feedback may bend the truth.</Typography></Box>
-      <Button startIcon={<Replay/>} variant="outlined" onClick={start}>New word</Button>
-    </Box>
-    <Typography className="probable-message" role="status">{message}</Typography>
-    <Box className="probable-board" aria-label="Probable word grid">
-      {rows.map((word,rowIndex)=><Box className="probable-row" key={rowIndex}>
-        {Array.from({length:5},(_,index)=>{const letter=word[index]||'';const submitted=rowIndex<guesses.length;const state=submitted?(letter===target[index]?'correct':target.includes(letter)?'partial':'wrong'):'';return <Box className={`probable-cell ${state}`} key={index}>{letter.toUpperCase()}</Box>;})}
-      </Box>)}
-    </Box>
-    <Stack className="probable-keyboard" spacing={1}>
-      {KEYS.map(row=><Box className="probable-key-row" key={row}>{[...row].map(letter=><button type="button" className={statuses[letter.toLowerCase()]||''} onClick={()=>move(letter)} key={letter}>{letter}</button>)}</Box>)}
-      <Box className="probable-key-row probable-actions"><button type="button" onClick={()=>move('BACKSPACE')}>DELETE</button><button type="button" onClick={()=>move('ENTER')}>ENTER</button></Box>
+    <Stack direction={{xs:'column',sm:'row'}} spacing={2} sx={{justifyContent:'space-between',alignItems:{xs:'stretch',sm:'center'},mb:3}}>
+      <Box><Typography variant="h2" component="h3">Probable</Typography><Typography sx={{color:'text.secondary',mt:1}}>Guess the five-letter word. The clues may bend the truth.</Typography></Box>
+      <Stack direction="row" spacing={1}><Tooltip title="Rules"><IconButton aria-label="Probable game rules" onClick={()=>setHelp(true)}><HelpOutline/></IconButton></Tooltip><Button startIcon={<Replay/>} variant="outlined" onClick={start}>New word</Button></Stack>
     </Stack>
+    <Box className="game-layout probable-game-layout">
+      <Paper className="probable-board-panel" variant="outlined">
+        <Typography className="probable-message" role="status">{message}</Typography>
+        <Box className="probable-board" aria-label="Probable word grid">
+          {rows.map((word,rowIndex)=><Box className="probable-row" key={rowIndex}>
+            {Array.from({length:5},(_,index)=>{const letter=word[index]||'';const submitted=rowIndex<guesses.length;const state=submitted?(letter===target[index]?'correct':target.includes(letter)?'partial':'wrong'):'';return <Box className={`probable-cell ${state}`} key={index}>{letter.toUpperCase()}</Box>;})}
+          </Box>)}
+        </Box>
+      </Paper>
+      <Paper className="probable-control-panel" variant="outlined">
+        <Typography variant="h5" sx={{mb:1}}>Make a guess</Typography>
+        <Typography sx={{color:'text.secondary',mb:2}}>{Math.max(0,ROWS-guesses.length)} attempts left</Typography>
+        <Stack className="probable-keyboard" spacing={1}>
+          {KEYS.map(row=><Box className="probable-key-row" key={row}>{[...row].map(letter=><button type="button" className={statuses[letter.toLowerCase()]||''} onClick={()=>move(letter)} key={letter}>{letter}</button>)}</Box>)}
+          <Box className="probable-key-row probable-actions"><button type="button" onClick={()=>move('BACKSPACE')}>DELETE</button><button type="button" onClick={()=>move('ENTER')}>ENTER</button></Box>
+        </Stack>
+        <Box className="probable-quick-rules"><Typography variant="h6">How to play</Typography><Typography>1. Enter a valid five-letter word.</Typography><Typography>2. Green is correct; gold is present but misplaced.</Typography><Typography>3. Some clues are randomly altered—that’s the twist.</Typography><Typography>4. Find the real word within six attempts.</Typography></Box>
+      </Paper>
+    </Box>
+    <Dialog open={help} onClose={()=>setHelp(false)} maxWidth="sm" fullWidth><DialogTitle>How to play Probable</DialogTitle><DialogContent><Typography sx={{mb:2}}>Guess the hidden five-letter word in six attempts. Use the on-screen keyboard or your physical keyboard, then press Enter.</Typography><Typography sx={{mb:2}}>Green letters are in the correct position. Gold letters belong in the word but are in the wrong position. Gray letters are absent.</Typography><Typography sx={{mb:2}}>The probability twist: after an incorrect guess, the game may substitute a random valid word before showing the color clues. The status message tells you when a clue was changed.</Typography><Typography color="text.secondary">A correct answer always wins immediately, even when probability is feeling mischievous.</Typography></DialogContent><DialogActions><Button onClick={()=>setHelp(false)}>Close</Button></DialogActions></Dialog>
   </Box>;
 }

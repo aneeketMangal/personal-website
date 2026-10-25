@@ -1,11 +1,9 @@
 import React from 'react';
+import '../game-polish.css';
 import {Box, Button, Typography} from '@mui/material';
 import ArrowBack from '@mui/icons-material/ArrowBack';
 import MapOutlined from '@mui/icons-material/MapOutlined';
 import ExploreOutlined from '@mui/icons-material/ExploreOutlined';
-import LandscapeOutlined from '@mui/icons-material/LandscapeOutlined';
-import DescriptionOutlined from '@mui/icons-material/DescriptionOutlined';
-import ContentCutOutlined from '@mui/icons-material/ContentCutOutlined';
 import CasinoOutlined from '@mui/icons-material/CasinoOutlined';
 import {PageHeader} from './Shared';
 import GameBoundary from './GameBoundary';
@@ -65,6 +63,6 @@ export default function Games({game, onSelect}) {
 
 function StackedBattleIcons() {
   return <Box className="mini-battle-icons" aria-hidden="true">
-    <LandscapeOutlined/><DescriptionOutlined/><ContentCutOutlined/>
+    <span>✊</span><span>✋</span><span>✌️</span>
   </Box>;
 }

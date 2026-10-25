@@ -1,0 +1,20 @@
+.mini-battle-icons span{font-family:"Segoe UI Emoji","Apple Color Emoji",sans-serif;font-size:34px;line-height:1}
+.mini-battle-icons span+span{margin-left:-7px}
+.probable-game{max-width:none;margin:0;padding-bottom:48px}
+.probable-board-panel,.probable-control-panel{padding:24px}
+.probable-board-panel{background:#151d25!important}
+.probable-message{margin-bottom:20px!important}
+.probable-board{margin-bottom:0}
+.probable-control-panel{align-self:start}
+.probable-quick-rules{display:grid;gap:8px;margin-top:26px;padding-top:22px;border-top:1px solid #303a45}
+.probable-quick-rules p{color:#aeb8c2;font-size:.92rem;line-height:1.5}
+html[data-theme='light'] .probable-board-panel{background:#f6f0e5!important}
+html[data-theme='light'] .probable-quick-rules{border-color:#d8cdbb}
+html[data-theme='light'] .probable-quick-rules p{color:#625d55}
+@media(max-width:600px){
+  .mini-battle-icons span{font-size:25px}
+  .probable-game-layout{gap:0}
+  .probable-board-panel{border-radius:14px 14px 0 0!important;padding:18px}
+  .probable-control-panel{border-top:0;border-radius:0 0 14px 14px!important;padding:20px}
+  .probable-key-row button{height:44px}
+}

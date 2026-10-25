@@ -3,22 +3,9 @@ import {Alert,Box,Button,Chip,Stack,Typography,useMediaQuery} from '@mui/materia
 import {counts,createBattle,piece,step,types} from './rps-engine';
 
 function drawPiece(ctx,p) {
-  ctx.save();ctx.translate(p.x,p.y);ctx.lineCap='round';ctx.lineJoin='round';ctx.lineWidth=2;
-  ctx.shadowColor='#0d151b55';ctx.shadowBlur=5;ctx.shadowOffsetY=2;
-  if(p.type==='rock') {
-    ctx.beginPath();ctx.moveTo(-12,5);ctx.lineTo(-9,-7);ctx.lineTo(-2,-12);ctx.lineTo(8,-9);ctx.lineTo(12,1);ctx.lineTo(7,11);ctx.lineTo(-5,12);ctx.closePath();
-    ctx.fillStyle='#718596';ctx.strokeStyle='#445766';ctx.fill();ctx.stroke();
-    ctx.beginPath();ctx.moveTo(-6,-5);ctx.lineTo(1,-8);ctx.lineTo(7,-4);ctx.strokeStyle='#b7c5cf';ctx.stroke();
-  } else if(p.type==='paper') {
-    ctx.beginPath();ctx.moveTo(-10,-13);ctx.lineTo(5,-13);ctx.lineTo(11,-7);ctx.lineTo(11,13);ctx.lineTo(-10,13);ctx.closePath();
-    ctx.fillStyle='#f0d36f';ctx.strokeStyle='#a47f1e';ctx.fill();ctx.stroke();
-    ctx.beginPath();ctx.moveTo(5,-13);ctx.lineTo(5,-7);ctx.lineTo(11,-7);ctx.stroke();
-    ctx.beginPath();ctx.moveTo(-5,-3);ctx.lineTo(6,-3);ctx.moveTo(-5,2);ctx.lineTo(6,2);ctx.moveTo(-5,7);ctx.lineTo(3,7);ctx.strokeStyle='#92731f';ctx.lineWidth=1.5;ctx.stroke();
-  } else {
-    ctx.shadowBlur=3;ctx.strokeStyle='#9a5f52';ctx.lineWidth=3;
-    ctx.beginPath();ctx.moveTo(-5,3);ctx.lineTo(11,-11);ctx.moveTo(5,3);ctx.lineTo(-10,-10);ctx.stroke();
-    ctx.fillStyle='#db9e8b';ctx.beginPath();ctx.arc(-7,8,5,0,Math.PI*2);ctx.arc(7,8,5,0,Math.PI*2);ctx.fill();ctx.stroke();
-  }
+  const icons={rock:'✊',paper:'✋',scissors:'✌️'};
+  ctx.save();ctx.translate(p.x,p.y);ctx.textAlign='center';ctx.textBaseline='middle';ctx.font='24px "Segoe UI Emoji","Apple Color Emoji",sans-serif';
+  ctx.shadowColor='#0d151b66';ctx.shadowBlur=5;ctx.shadowOffsetY=2;ctx.fillText(icons[p.type],0,1);
   ctx.restore();
 }
 
