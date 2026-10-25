@@ -29,7 +29,7 @@ function PieceIcon({type}) {
 }
 
 export default function RpsGame() {
-  const mobile=useMediaQuery('(max-width:600px)'),arenaWidth=mobile?420:800,arenaHeight=mobile?720:500;
+  const mobile=useMediaQuery('(max-width:600px)'),arenaWidth=mobile?420:800,arenaHeight=mobile?520:500;
   const canvas=useRef(null), pieces=useRef([]), hintTimer=useRef();
   const [running,setRunning]=useState(false),[started,setStarted]=useState(false),[result,setResult]=useState(null),[hintVisible,setHintVisible]=useState(false);
   const [score,setScore]=useState({rock:0,paper:0,scissors:0});

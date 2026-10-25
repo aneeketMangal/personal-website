@@ -18,8 +18,8 @@ function WorkEntry({job}) {
     </Box>
   </Box>;
 }
-export default function Home() {
-  return <>
+export default function Home({view='home'}) {
+  if(view==='home') return <>
     <Stack direction={{xs: 'column-reverse', sm: 'row'}} spacing={{xs: 3, md: 6}} sx={{alignItems: {xs: 'flex-start', sm: 'center'}, mb: 5}}>
       <Box sx={{flex: 1, minWidth: 0}}>
         <Typography variant="h1" component="h1" sx={{fontSize: {xs: 40, md: 54}, mb: 2}}>Aneeket Mangal</Typography>
@@ -29,7 +29,9 @@ export default function Home() {
       </Box>
       <PhotoPlaceholder/>
     </Stack>
-    <Box component="section" id="education" className="flow-section section-anchor" aria-labelledby="home-education">
+  </>;
+  if(view==='education') return <>
+    <Box component="section" className="flow-section" aria-labelledby="home-education">
       <Typography id="home-education" variant="h3" component="h2" sx={{mb: 2.5}}>Education</Typography>
       <Box className="experience-row">
         <Brand company="IIT Ropar" size={64}/>
@@ -40,7 +42,9 @@ export default function Home() {
         </Box>
       </Box>
     </Box>
-    <Box component="section" id="experience" className="flow-section section-anchor" aria-labelledby="home-work">
+  </>;
+  return <>
+    <Box component="section" className="flow-section" aria-labelledby="home-work">
       <Typography id="home-work" variant="h3" component="h2" sx={{mb: 1}}>Work Experience</Typography>
       {data.jobs.filter(job => !/intern/i.test(job.role)).map(job => <WorkEntry key={job.company} job={job}/>)}
     </Box>

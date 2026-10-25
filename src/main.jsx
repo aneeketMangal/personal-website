@@ -1,4 +1,4 @@
-import '@fontsource-variable/montserrat';
+import '@fontsource-variable/inter';
 import React, { useEffect, useState } from 'react';
 import { createRoot } from 'react-dom/client';
 import { ThemeProvider, CssBaseline } from '@mui/material';

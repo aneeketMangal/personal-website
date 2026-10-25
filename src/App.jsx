@@ -1,4 +1,4 @@
-import React, {useCallback, useEffect, useRef, useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {
   Box, ButtonBase, Stack, Typography, useMediaQuery
 } from '@mui/material';
@@ -34,15 +34,6 @@ export default function App() {
   const [activeSection, setActiveSection] = useState(() => readHash().section);
   const [game, setGame] = useState(() => readHash().game);
   const reducedMotion = useMediaQuery('(prefers-reduced-motion: reduce)');
-  const navigationTimer = useRef();
-
-  const scrollToSection = useCallback((section, instant = false) => {
-    document.getElementById(section)?.scrollIntoView({
-      block: 'start',
-      behavior: instant || reducedMotion ? 'instant' : 'smooth'
-    });
-  }, [reducedMotion]);
-
   function updateHash(hash) {
     if (window.location.hash !== `#${hash}`) {
       window.history.pushState(null, '', `#${hash}`);
@@ -53,68 +44,31 @@ export default function App() {
     // Preserve native open-in-new-tab / copy-link behavior for anchor navigation.
     if (event && (event.metaKey || event.ctrlKey || event.shiftKey || event.altKey)) return;
     event?.preventDefault();
-    updateHash(section === 'games' && game ? `games/${game}` : section);
+    updateHash(section);
     setActiveSection(section);
-    clearTimeout(navigationTimer.current);
-    navigationTimer.current = setTimeout(() => scrollToSection(section), 0);
+    setGame(null);
+    window.scrollTo({top:0,behavior:reducedMotion?'auto':'smooth'});
   }
 
   function selectGame(nextGame) {
     setGame(nextGame);
     setActiveSection('games');
     updateHash(nextGame ? `games/${nextGame}` : 'games');
-    requestAnimationFrame(() => scrollToSection('games'));
+    window.scrollTo({top:0,behavior:'auto'});
   }
 
   useEffect(() => {
-    let frame;
-    let cancelled = false;
     function followHash() {
       const next = readHash();
-      if (next.section === 'games') setGame(next.game);
+      setGame(next.section === 'games' ? next.game : null);
       setActiveSection(next.section);
-      cancelAnimationFrame(frame);
-      frame = requestAnimationFrame(() => scrollToSection(next.section, true));
+      window.scrollTo({top:0,behavior:'auto'});
     }
-    // Fonts can change line wrapping, so settle layout before an initial deep link.
-    Promise.resolve(document.fonts?.ready).then(() => {
-      if (!cancelled) followHash();
-    });
     window.addEventListener('hashchange', followHash);
     window.addEventListener('popstate', followHash);
     return () => {
-      cancelled = true;
-      cancelAnimationFrame(frame);
-      clearTimeout(navigationTimer.current);
       window.removeEventListener('hashchange', followHash);
       window.removeEventListener('popstate', followHash);
-    };
-  }, [scrollToSection]);
-
-  useEffect(() => {
-    let frame;
-    function markVisibleSection() {
-      frame = null;
-      const line = 96;
-      let visible = 'home';
-      for (const [id] of sections) {
-        if (document.getElementById(id)?.getBoundingClientRect().top <= line) visible = id;
-      }
-      if (window.scrollY + window.innerHeight >= document.documentElement.scrollHeight - 4) {
-        visible = 'library';
-      }
-      setActiveSection(visible);
-    }
-    function requestUpdate() {
-      if (!frame) frame = requestAnimationFrame(markVisibleSection);
-    }
-    window.addEventListener('scroll', requestUpdate, {passive: true});
-    window.addEventListener('resize', requestUpdate);
-    requestUpdate();
-    return () => {
-      cancelAnimationFrame(frame);
-      window.removeEventListener('scroll', requestUpdate);
-      window.removeEventListener('resize', requestUpdate);
     };
   }, []);
 
@@ -156,14 +110,17 @@ export default function App() {
       </Stack>
     </Box>
   );
+  const page = activeSection === 'home' ? <Home view="home"/>
+    : activeSection === 'education' ? <Home view="education"/>
+    : activeSection === 'experience' ? <Home view="experience"/>
+    : activeSection === 'projects' ? <Projects/>
+    : activeSection === 'games' ? <Games game={null} onSelect={selectGame}/>
+    : <Library/>;
   return <Box>
     {navigation}
     <Box component="main" className="site-main" sx={{minWidth:0,pt:'64px'}}>
       <Box sx={{maxWidth: 1120, mx: 'auto', px: {xs: 2, sm: 4, lg: 6}, py: {xs: 3, md: 5}}}>
-        <Box component="section" id="home" className="page-section" aria-label="Home"><Home/></Box>
-        <Box component="section" id="projects" className="page-section flow-section" aria-label="Projects"><Projects/></Box>
-        <Box component="section" id="games" className="page-section flow-section" aria-label="Games"><Games game={game} onSelect={selectGame}/></Box>
-        <Box component="section" id="library" className="page-section flow-section" aria-label="Library"><Library/></Box>
+        <Box component="section" id={activeSection} className="page-section" aria-label={sections.find(([id])=>id===activeSection)?.[1]}>{page}</Box>
       </Box>
     </Box>
   </Box>;
