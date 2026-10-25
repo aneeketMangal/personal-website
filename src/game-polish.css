@@ -2,7 +2,14 @@
 @media(min-width:900px){html{font-size:17px}}
 .mini-battle-icons span+span{margin-left:-7px}
 .rps-mark{display:block;width:86px;height:auto;overflow:visible}
-.probable-game{max-width:none;margin:0;padding-bottom:48px}
+.rps-mark .rps-rock{animation:rps-float-rock 3.4s ease-in-out infinite}
+.rps-mark .rps-paper{animation:rps-float-paper 3.4s ease-in-out .2s infinite}
+.rps-mark .rps-scissors{animation:rps-float-scissors 3.4s ease-in-out .4s infinite}
+@keyframes rps-float-rock{50%{transform:translate(18px,22px)}}
+@keyframes rps-float-paper{50%{transform:translate(48px,22px)}}
+@keyframes rps-float-scissors{50%{transform:translate(79px,21px)}}
+@media(prefers-reduced-motion:reduce){.rps-mark g{animation:none!important}}
+.probable-game{width:100%;max-width:1120px;margin:0 auto;padding-bottom:48px}
 .probable-board-panel,.probable-control-panel{padding:24px}
 .probable-board-panel{background:#151d25!important}
 .probable-message{margin-bottom:20px!important}
