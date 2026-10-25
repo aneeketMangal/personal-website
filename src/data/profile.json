@@ -133,6 +133,38 @@
       "link": "View repository"
     },
     {
+      "slug": "gradient-vector-field-snake",
+      "title": "Gradient Vector Field Snake",
+      "subtext": "Computer vision",
+      "description": "A Python implementation of Gradient Vector Flow snakes for extracting and visualizing edge-directed vector fields from images.",
+      "category": "ACADEMIC PROJECT",
+      "tech": [
+        "Python",
+        "Jupyter",
+        "OpenCV",
+        "NumPy",
+        "scikit-image",
+        "Matplotlib"
+      ],
+      "overview": "An implementation of the Gradient Vector Flow approach introduced by Xu and Prince, turning image edges into a smooth vector field that can guide active contours toward object boundaries.",
+      "highlights": [
+        "Preprocesses grayscale images with Gaussian smoothing and Sobel-based edge extraction.",
+        "Computes horizontal and vertical edge-map gradients with explicit boundary handling.",
+        "Iteratively solves the GVF equations using a Laplacian update and a stable CFL step-size restriction.",
+        "Visualizes the input, edge map, directional gradients, GVF components, and resulting vector field in a documented notebook."
+      ],
+      "architecture": ["Grayscale input image", "Gaussian and Sobel edge map", "Iterative GVF solver", "Vector-field visualization"],
+      "images": [
+        "projects/gvf-snake-1.png",
+        "projects/gvf-snake-2.png",
+        "projects/gvf-snake-3.png",
+        "projects/gvf-snake-4.png",
+        "projects/gvf-snake-5.png"
+      ],
+      "url": "https://github.com/aneeketMangal/Gradient-Vector-Field-Snake",
+      "link": "View repository"
+    },
+    {
       "slug": "pg-admissions-portal",
       "title": "PG Admissions Portal",
       "subtext": "Full-stack development",

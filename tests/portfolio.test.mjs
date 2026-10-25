@@ -77,13 +77,13 @@ test('real reading list has ten books and one correctly identified article, with
   assert.equal(books.find(book => book.type === 'Article').url, 'https://overreacted.io/react-as-a-ui-runtime/');
 });
 
-test('project order includes RISC-V above PG plus GameDome, without Johnson or website easter eggs', () => {
+test('project order includes the computer-vision project above PG plus GameDome, without website easter eggs', () => {
   assert.deepEqual(profile.projects.map(p => p.title), [
-    'DevAssist MCP Server', 'Gmail File System', 'RISC-V Simulator', 'PG Admissions Portal', 'GameDome'
+    'DevAssist MCP Server', 'Gmail File System', 'RISC-V Simulator', 'Gradient Vector Field Snake', 'PG Admissions Portal', 'GameDome'
   ]);
   assert(profile.projects.every(p => !/2 states|what.s your angle|johnson/i.test(p.title)));
-  assert.equal(profile.projects[4].url, 'https://github.com/aneeketMangal/theGameDome');
-  assert.equal(profile.projects[2].url, 'https://github.com/aneeketMangal/RISC-V_Simulator');
+  assert.equal(profile.projects.find(project => project.slug === 'gamedome').url, 'https://github.com/aneeketMangal/theGameDome');
+  assert.equal(profile.projects.find(project => project.slug === 'risc-v-simulator').url, 'https://github.com/aneeketMangal/RISC-V_Simulator');
   assert.equal(new Set(profile.projects.map(project => project.slug)).size, profile.projects.length);
   assert(profile.projects.every(project => project.tech.length >= 4 && project.overview && project.highlights.length >= 4));
 });
