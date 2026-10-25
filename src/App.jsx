@@ -3,8 +3,6 @@ import {
   Box, ButtonBase, Stack, Typography, useMediaQuery
 } from '@mui/material';
 import HomeOutlined from '@mui/icons-material/HomeOutlined';
-import SchoolOutlined from '@mui/icons-material/SchoolOutlined';
-import WorkOutlined from '@mui/icons-material/WorkOutlined';
 import CodeOutlined from '@mui/icons-material/CodeOutlined';
 import SportsEsportsOutlined from '@mui/icons-material/SportsEsportsOutlined';
 import MenuBookOutlined from '@mui/icons-material/MenuBookOutlined';
@@ -15,8 +13,6 @@ import Library from './components/Library';
 
 const sections = [
   ['home', 'Home', HomeOutlined],
-  ['education', 'Education', SchoolOutlined],
-  ['experience', 'Work Experience', WorkOutlined],
   ['projects', 'Projects', CodeOutlined],
   ['games', 'Games', SportsEsportsOutlined],
   ['library', 'Library', MenuBookOutlined]
@@ -110,9 +106,7 @@ export default function App() {
       </Stack>
     </Box>
   );
-  const page = activeSection === 'home' ? <Home view="home"/>
-    : activeSection === 'education' ? <Home view="education"/>
-    : activeSection === 'experience' ? <Home view="experience"/>
+  const page = activeSection === 'home' ? <Home/>
     : activeSection === 'projects' ? <Projects/>
     : activeSection === 'games' ? <Games game={null} onSelect={selectGame}/>
     : <Library/>;

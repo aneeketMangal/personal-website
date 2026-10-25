@@ -12,14 +12,13 @@ import {books} from '../src/data/books.js';
 const execute = promisify(execFile);
 const project = fileURLToPath(new URL('..', import.meta.url));
 
-test('navigation is a horizontal top bar and each tab renders an individual page', async () => {
+test('navigation is a horizontal top bar with education and work retained on Home', async () => {
   const app = await readFile(path.join(project, 'src/App.jsx'), 'utf8');
   const home = await readFile(path.join(project, 'src/components/Home.jsx'), 'utf8');
-  assert.match(app, /\['education', 'Education'/);
-  assert.match(app, /\['experience', 'Work Experience'/);
-  assert.match(home, /view==='education'/);
-  assert.match(app, /activeSection === 'education' \? <Home view="education"\/>/);
-  assert.match(app, /activeSection === 'experience' \? <Home view="experience"\/>/);
+  assert(!app.includes("['education', 'Education'"));
+  assert(!app.includes("['experience', 'Work Experience'"));
+  assert.match(home, /home-education-summary/);
+  assert.match(home, /home-work-summary/);
   assert.match(app, /id=\{activeSection\}/);
   assert.match(app, /className="top-navigation"/);
   assert.match(app, /<Stack direction="row"/);
