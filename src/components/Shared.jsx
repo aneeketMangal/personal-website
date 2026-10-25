@@ -1,5 +1,6 @@
 import React from 'react';
 import { Box, Typography, Stack, Avatar, Button } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 import GitHubIcon from '@mui/icons-material/GitHub';
 import LinkedInIcon from '@mui/icons-material/LinkedIn';
 import MailOutline from '@mui/icons-material/MailOutlined';
@@ -26,7 +27,8 @@ export function Brand({
   company,
   size = 58
 }) {
-  const name = company === 'Uber' ? 'uber.svg' : company === 'Microsoft' ? 'microsoft.svg' : company === 'IIT Ropar' ? 'iit-ropar.png' : company === 'Curer' ? 'curer-mark.png' : null;
+  const dark = useTheme().palette.mode === 'dark';
+  const name = company === 'Uber' ? 'uber.svg' : company === 'Microsoft' ? 'microsoft.svg' : company === 'IIT Ropar' ? (dark ? 'iit-ropar-dark.png' : 'iit-ropar.png') : company === 'Curer' ? 'curer-mark.png' : null;
   return <Box className="brand-mark" sx={{
     width: size,
     height: size,

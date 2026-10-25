@@ -162,7 +162,7 @@
   position:fixed;
   z-index:1301;
   top:-5px;
-  right:19px;
+  right:27.5px;
   width:15px;
   height:13px;
   border-radius:2px 2px 7px 7px;
@@ -171,9 +171,9 @@
   box-shadow:inset 0 1px #fff,0 3px 5px #0008;
   pointer-events:none;
 }
-.switch-fixed-clamp::after { content:''; position:absolute; left:5px; bottom:2px; width:4px; height:4px; border-radius:50%; background:#5a5853; box-shadow:inset 0 1px 1px #222; }
-.switch-fixed-clamp::before { content:''; position:absolute; z-index:-1; left:5px; bottom:-6px; width:5px; height:9px; border-radius:0 0 3px 3px; background:linear-gradient(90deg,#6f0710,#db3440 52%,#750812); box-shadow:1px 1px 2px #0008; }
-.switch-cord-layer { position:fixed; inset:0; z-index:1298; width:100vw; height:100vh; overflow:visible; pointer-events:none; }
+.switch-fixed-clamp::after { content:''; position:absolute; left:50%; bottom:2px; width:4px; height:4px; border-radius:50%; background:#5a5853; box-shadow:inset 0 1px 1px #222; transform:translateX(-50%); }
+.switch-fixed-clamp::before { content:''; position:absolute; z-index:-1; left:50%; bottom:-7px; width:5px; height:10px; border-radius:0 0 3px 3px; background:linear-gradient(90deg,#6f0710,#db3440 52%,#750812); box-shadow:1px 1px 2px #0008; transform:translateX(-50%); }
+.switch-cord-layer { position:fixed; top:0; left:0; z-index:1298; overflow:visible; pointer-events:none; }
 .switch-flex-wire { fill:none; stroke:#a61722; stroke-width:5; stroke-linecap:round; filter:drop-shadow(1px 2px 2px #0008); }
 .switch-cord-layer.is-pulling .switch-flex-wire { animation:cord-pulse 720ms ease; }
 @keyframes cord-pulse { 0%,100%{stroke-width:5} 34%{stroke-width:6.5} 65%{stroke-width:4.5} }

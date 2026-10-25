@@ -1,17 +1,23 @@
-import React,{useEffect,useRef,useState} from 'react';
+import React,{useEffect,useLayoutEffect,useRef,useState} from 'react';
 import LightModeOutlined from '@mui/icons-material/LightModeOutlined';
+
+const SWITCH_WIDTH=68;
+function layoutSize(){return {w:document.documentElement.clientWidth,h:document.documentElement.clientHeight};}
 
 export default function HangingThemeSwitch({mode,onToggle}) {
   const [pulling,setPulling]=useState(false);
   const [compact,setCompact]=useState(false);
   const [position,setPosition]=useState(()=>{
-    try {const saved=JSON.parse(localStorage.getItem('aneeket:switch-position:v2'));if(Number.isFinite(saved?.x)&&Number.isFinite(saved?.y))return saved;} catch {}
-    return {x:Math.max(4,window.innerWidth-76),y:76};
+    try {const saved=JSON.parse(localStorage.getItem('aneeket:switch-position:v4'));if(Number.isFinite(saved?.x)&&Number.isFinite(saved?.y))return saved;} catch {}
+    const {w,h}=layoutSize();
+    return {x:Math.max(0,w-SWITCH_WIDTH),y:Math.min(76,Math.max(24,h-120))};
   });
+  const [cord,setCord]=useState(()=>{const {w,h}=layoutSize();return {x1:0,y1:0,x2:0,y2:0,w,h};});
   const timer=useRef(),drag=useRef(),dragged=useRef(false),positionRef=useRef(position);
+  const clampRef=useRef(null),switchRef=useRef(null);
   useEffect(()=>{positionRef.current=position;},[position]);
   useEffect(()=>{
-    function keepOnScreen() {setPosition(old=>({x:Math.max(0,Math.min(window.innerWidth-68,old.x)),y:Math.max(24,Math.min(window.innerHeight-120,old.y))}));}
+    function keepOnScreen() {const {w,h}=layoutSize();setPosition(old=>({x:Math.max(0,Math.min(w-SWITCH_WIDTH,old.x)),y:Math.max(24,Math.min(h-120,old.y))}));}
     window.addEventListener('resize',keepOnScreen);
     keepOnScreen();
     return ()=>{clearTimeout(timer.current);window.removeEventListener('resize',keepOnScreen);};
@@ -50,25 +56,38 @@ export default function HangingThemeSwitch({mode,onToggle}) {
     const dx=event.clientX-drag.current.startX,dy=event.clientY-drag.current.startY;
     if(Math.hypot(dx,dy)>4)dragged.current=true;
     if(!dragged.current)return;
-    const next={x:Math.max(0,Math.min(window.innerWidth-68,drag.current.origin.x+dx)),y:Math.max(24,Math.min(window.innerHeight-120,drag.current.origin.y+dy))};
+    const {w,h}=layoutSize();
+    const next={x:Math.max(0,Math.min(w-SWITCH_WIDTH,drag.current.origin.x+dx)),y:Math.max(24,Math.min(h-120,drag.current.origin.y+dy))};
     positionRef.current=next;
     setPosition(next);
   }
   function pointerUp(event) {
     if(!drag.current||drag.current.pointerId!==event.pointerId)return;
     drag.current=null;
-    if(dragged.current){try {localStorage.setItem('aneeket:switch-position:v2',JSON.stringify(positionRef.current));} catch {}}
+    if(dragged.current){try {localStorage.setItem('aneeket:switch-position:v4',JSON.stringify(positionRef.current));} catch {}}
   }
+  function updateCord() {
+    const clamp=clampRef.current?.getBoundingClientRect();
+    const neck=switchRef.current?.querySelector('.bed-switch-neck')?.getBoundingClientRect();
+    const {w,h}=layoutSize();
+    if(!clamp||!neck){setCord(old=>({...old,w,h}));return;}
+    setCord({w,h,x1:clamp.left+clamp.width/2,y1:clamp.bottom+4,x2:neck.left+neck.width/2,y2:neck.top+2});
+  }
+  useLayoutEffect(()=>{
+    if(compact)return;
+    updateCord();
+    window.addEventListener('resize',updateCord);
+    return ()=>window.removeEventListener('resize',updateCord);
+  },[position,pulling,compact]);
   const next=mode==='dark'?'light':'dark';
-  const anchorX=window.innerWidth-26,anchorY=8,endX=position.x+34,endY=position.y+3+(pulling?14:0);
-  const cordPath=`M ${anchorX} ${anchorY} L ${endX} ${endY}`;
+  const cordPath=`M ${cord.x1} ${cord.y1} L ${cord.x2} ${cord.y2}`;
   return <>
   {!compact&&<>
-    <span className="switch-fixed-clamp" aria-hidden="true"/>
-    <svg className={`switch-cord-layer${pulling?' is-pulling':''}`} viewBox={`0 0 ${window.innerWidth} ${window.innerHeight}`} preserveAspectRatio="none" aria-hidden="true">
+    <span ref={clampRef} className="switch-fixed-clamp" aria-hidden="true"/>
+    <svg className={`switch-cord-layer${pulling?' is-pulling':''}`} width={cord.w} height={cord.h} viewBox={`0 0 ${cord.w} ${cord.h}`} preserveAspectRatio="none" aria-hidden="true">
       <path className="switch-flex-wire" d={cordPath}/>
     </svg>
-    <button type="button" className={`hanging-theme-switch${pulling?' is-pulling':''}`} style={{left:position.x,top:position.y,right:'auto'}}
+    <button ref={switchRef} type="button" className={`hanging-theme-switch${pulling?' is-pulling':''}`} style={{left:position.x,top:position.y,right:'auto'}}
       onPointerDown={pointerDown} onPointerMove={pointerMove} onPointerUp={pointerUp} onPointerCancel={pointerUp}
       onClick={event=>{if(dragged.current){event.preventDefault();dragged.current=false;return;}pull();}}
       aria-label={`Switch to ${next} theme`} aria-pressed={mode==='light'} title={`Pull for ${next} theme`}>
