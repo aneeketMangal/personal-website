@@ -178,6 +178,15 @@
       ],
       "architecture": ["Flutter application", "Local auth and SQLite", "Flask REST API", "Chat and leaderboard"],
       "image": "projects/gamedome.jpg",
+      "images": [
+        "projects/gamedome.jpg",
+        "projects/gamedome-1.jpg",
+        "projects/gamedome-2.jpg",
+        "projects/gamedome-3.jpeg",
+        "projects/gamedome-4.jpg",
+        "projects/gamedome-5.jpg",
+        "projects/gamedome-6.jpg"
+      ],
       "url": "https://github.com/aneeketMangal/theGameDome",
       "link": "View repository"
     }

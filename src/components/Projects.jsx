@@ -38,10 +38,16 @@ export default function Projects({project:slug,onSelect}) {
       <Typography variant="h2" component="h2" sx={{mb:.75}}>{selected.title}</Typography>
       <Typography className="project-subtext" sx={{mb:2}}>{selected.subtext}</Typography>
       <Typography sx={{color:'text.secondary',fontSize:{xs:'1.05rem',md:'1.2rem'},lineHeight:1.75,maxWidth:820}}>{selected.overview||selected.description}</Typography>
+      <Box sx={{mt:2.5}}><PillLink href={selected.url} tone={action.tone} icon={action.icon}
+        aria-label={`${selected.title}: ${action.description}`}>{action.label}</PillLink></Box>
       <Stack direction="row" spacing={1} useFlexGap sx={{flexWrap:'wrap',my:3}}>
         {selected.tech.map(tech=><Chip label={tech} variant="outlined" key={tech}/>) }
       </Stack>
-      {selected.image&&<Box className="project-hero-image"><img src={asset(selected.image)} alt={`${selected.title} interface`}/></Box>}
+      {selected.images?<Box className="project-gallery" aria-label={`${selected.title} screenshots`}>
+        {selected.images.map((image,index)=><button type="button" className="project-gallery-image" key={image} onClick={event=>event.currentTarget.classList.toggle('is-expanded')} aria-label={`Expand ${selected.title} screenshot ${index+1}`}>
+          <img src={asset(image)} alt={`${selected.title} screenshot ${index+1}`}/>
+        </button>)}
+      </Box>:selected.image&&<Box className="project-hero-image"><img src={asset(selected.image)} alt={`${selected.title} interface`}/></Box>}
       <SystemWhiteboard nodes={selected.architecture}/>
       <Box className="project-detail-panel">
         <Typography variant="h4" component="h3" sx={{fontWeight:700,mb:2}}>What it does</Typography>
@@ -49,8 +55,6 @@ export default function Projects({project:slug,onSelect}) {
           {selected.highlights.map(item=><Typography component="li" key={item} sx={{color:'text.secondary',mb:1.4,lineHeight:1.75}}>{item}</Typography>)}
         </Box>
       </Box>
-      <Box sx={{mt:3}}><PillLink href={selected.url} tone={action.tone} icon={action.icon}
-        aria-label={`${selected.title}: ${action.description}`}>{action.label}</PillLink></Box>
     </Box>;
   }
   return <>

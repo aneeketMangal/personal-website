@@ -43,16 +43,13 @@ export default function Games({game, onSelect}) {
             {slug:'2-states',title:'2 States',subtext:'Geography',description:'Connect two Indian states using shared land borders.',icon:<MapOutlined/>},
             {slug:'rps',title:'Rock Paper Scissors Battle',subtext:'Simulation',description:'Watch rocks, paper and scissors collide and convert. Which team takes over?',icon:<StackedBattleIcons/>},
             {slug:'angle',title:'What’s Your Angle',subtext:'Geometry',description:'Drag the handle to match a target angle. You have four attempts.',icon:<ExploreOutlined/>}
-          ].map((item,index)=><Box component="article" key={item.slug} className="project-row game-row" role="link" tabIndex={0}
+          ].map(item=><Box component="article" key={item.slug} className="project-row game-row" role="link" tabIndex={0}
             aria-labelledby={`game-${item.slug}-title`} onClick={()=>onSelect(item.slug)} onKeyDown={event=>{
               if(event.key==='Enter'||event.key===' '){event.preventDefault();onSelect(item.slug);}
             }}>
-            <Typography className="row-number" aria-hidden="true">{String(index+1).padStart(2,'0')}</Typography>
+            <Box className="game-row-icon" aria-hidden="true">{item.icon}</Box>
             <Box sx={{minWidth:0}}>
-              <Box className="game-row-heading">
-                <Typography id={`game-${item.slug}-title`} variant="h4" component="h3" sx={{fontWeight:700}}>{item.title}</Typography>
-                <Box className="game-row-icon" aria-hidden="true">{item.icon}</Box>
-              </Box>
+              <Typography id={`game-${item.slug}-title`} variant="h4" component="h3" sx={{fontWeight:700}}>{item.title}</Typography>
               <Typography className="project-subtext" sx={{mt:.8,mb:1}}>{item.subtext}</Typography>
               <Typography sx={{color:'text.secondary',lineHeight:1.7,maxWidth:790}}>{item.description}</Typography>
             </Box>
