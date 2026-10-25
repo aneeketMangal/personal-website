@@ -12,6 +12,7 @@
 .probable-game{width:100%;max-width:1120px;margin:0 auto;padding-bottom:48px}
 .probable-board-panel,.probable-control-panel{padding:24px}
 .probable-board-panel{background:#151d25!important}
+.probable-board{width:min(100%,500px)}
 .probable-message{margin-bottom:20px!important}
 .probable-board{margin-bottom:0}
 .probable-control-panel{align-self:start}
