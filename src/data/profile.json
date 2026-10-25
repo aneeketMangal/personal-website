@@ -80,6 +80,7 @@
         "Contributed to a 100% increase in generated troubleshooting guides and incident postmortems.",
         "Adopted by more than 10 engineering teams and continued beyond the original handoff."
       ],
+      "architecture": ["Engineer or IDE", "MCP server", "RAG and semantic search", "Documents and UML"],
       "url": "https://drive.google.com/file/d/1QctsHCG83CnhnHtt3D_zHy4kSPafeu7g/view?usp=sharing",
       "link": "View resume"
     },
@@ -101,6 +102,7 @@
         "Includes custom string-processing helpers for parsing structured IMAP responses.",
         "Runs as a mounted Linux filesystem and maps file creation or edits back to email operations."
       ],
+      "architecture": ["Linux file commands", "FUSE callbacks", "libcurl and IMAP", "Gmail mailbox"],
       "url": "https://github.com/aneeketMangal/Gmail-File-System",
       "link": "View repository"
     },
@@ -122,6 +124,8 @@
         "Provides configurable instruction and data caches, replacement policies, and branch prediction controls.",
         "Produces detailed register, memory, forwarding, statistics, and execution-log outputs for analysis."
       ],
+      "architecture": ["Assembly or machine code", "Instruction decoder", "Pipeline and cache engine", "PyQt UI and logs"],
+      "image": "projects/risc-v-simulator.png",
       "url": "https://github.com/aneeketMangal/RISC-V_Simulator",
       "link": "View repository"
     },
@@ -143,6 +147,7 @@
         "Presents actionable visualizations for administrators through a responsive React interface.",
         "Built as a MERN application with a recorded product demonstration."
       ],
+      "architecture": ["Applicant and admin UI", "React frontend", "Express API", "MongoDB and merit engine"],
       "url": "https://drive.google.com/file/d/1V1YqgCRFs8J76fwSykuYxXF5q5gm-9QB/view?usp=sharing",
       "link": "Watch demo"
     },
@@ -166,6 +171,8 @@
         "Uses local SQLite storage and shared preferences for authentication and leaderboard state.",
         "Designed so contributors can add games or extend the app's features and animation system."
       ],
+      "architecture": ["Flutter application", "Local auth and SQLite", "Flask REST API", "Chat and leaderboard"],
+      "image": "projects/gamedome.jpg",
       "url": "https://github.com/aneeketMangal/theGameDome",
       "link": "View repository"
     }
