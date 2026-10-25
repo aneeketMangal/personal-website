@@ -42,7 +42,7 @@ export default function HangingThemeSwitch({mode,onToggle}) {
     if(dragged.current){try {localStorage.setItem('aneeket:switch-position:v2',JSON.stringify(positionRef.current));} catch {}}
   }
   const next=mode==='dark'?'light':'dark';
-  const anchorX=window.innerWidth-26,anchorY=-4,endX=position.x+34,endY=position.y+3+(pulling?14:0);
+  const anchorX=window.innerWidth-26,anchorY=8,endX=position.x+34,endY=position.y+3+(pulling?14:0);
   const cordPath=`M ${anchorX} ${anchorY} L ${endX} ${endY}`;
   return <>
   <span className="switch-fixed-clamp" aria-hidden="true"/>
