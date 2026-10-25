@@ -33,7 +33,7 @@ export function Brand({
     display: 'grid',
     placeItems: 'center',
     flexShrink: 0
-  }}>{name ? <Box component="img" src={asset(`brands/${name}`)} alt={`${company} logo`} sx={{
+  }}>{name ? <Box component="img" className={`brand-logo brand-logo-${company.toLowerCase().replaceAll(' ','-')}`} src={asset(`brands/${name}`)} alt={`${company} logo`} sx={{
       width: company === 'Microsoft' ? size * .76 : size,
       height: company === 'Microsoft' ? size * .76 : size,
       objectFit: 'contain'
