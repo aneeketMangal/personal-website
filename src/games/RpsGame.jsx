@@ -1,5 +1,5 @@
 import React,{useEffect,useRef,useState} from 'react';
-import {Alert,Box,Button,Chip,Stack,Typography} from '@mui/material';
+import {Alert,Box,Button,Chip,Stack,Typography,useMediaQuery} from '@mui/material';
 import {counts,createBattle,piece,step,types} from './rps-engine';
 
 function drawPiece(ctx,p) {
@@ -29,12 +29,13 @@ function PieceIcon({type}) {
 }
 
 export default function RpsGame() {
+  const mobile=useMediaQuery('(max-width:600px)'),arenaWidth=mobile?420:800,arenaHeight=mobile?720:500;
   const canvas=useRef(null), pieces=useRef([]), hintTimer=useRef();
   const [running,setRunning]=useState(false),[started,setStarted]=useState(false),[result,setResult]=useState(null),[hintVisible,setHintVisible]=useState(false);
   const [score,setScore]=useState({rock:0,paper:0,scissors:0});
   function draw() {
     const ctx=canvas.current?.getContext('2d');if(!ctx)return;
-    ctx.clearRect(0,0,800,500);
+    ctx.clearRect(0,0,arenaWidth,arenaHeight);
     for(const p of pieces.current) drawPiece(ctx,p);
   }
   useEffect(()=>{
@@ -42,7 +43,7 @@ export default function RpsGame() {
     let frame,last=0,lastScore=0;
     function animate(now) {
       const delta=last?Math.min((now-last)/1000,.04):0;last=now;
-      const next=step(pieces.current,delta);draw();
+      const next=step(pieces.current,delta,arenaWidth,arenaHeight);draw();
       const remaining=types.filter(type=>next[type]>0);
       if(remaining.length===1) {setScore(next);setResult(remaining[0]);setRunning(false);return;}
       if(now-lastScore>200) {setScore(next);lastScore=now;}
@@ -50,16 +51,17 @@ export default function RpsGame() {
     }
     frame=requestAnimationFrame(animate);
     return ()=>cancelAnimationFrame(frame);
-  },[running]);
+  },[running,arenaWidth,arenaHeight]);
+  useEffect(()=>{if(started){pieces.current=createBattle(100,Math.random,arenaWidth,arenaHeight);setScore(counts(pieces.current));draw();}},[arenaWidth,arenaHeight]);
   useEffect(()=>()=>clearTimeout(hintTimer.current),[]);
   function start() {
-    pieces.current=createBattle(100);setScore(counts(pieces.current));setResult(null);setStarted(true);setRunning(true);setHintVisible(true);draw();
+    pieces.current=createBattle(100,Math.random,arenaWidth,arenaHeight);setScore(counts(pieces.current));setResult(null);setStarted(true);setRunning(true);setHintVisible(true);draw();
     clearTimeout(hintTimer.current);hintTimer.current=setTimeout(()=>setHintVisible(false),2000);
   }
   function add(event) {
     if(!running || pieces.current.length>=300)return;
     const rect=canvas.current.getBoundingClientRect();
-    pieces.current.push(piece(types[Math.floor(Math.random()*3)],Math.random,Math.max(15,Math.min(785,(event.clientX-rect.left)*800/rect.width)),Math.max(15,Math.min(485,(event.clientY-rect.top)*500/rect.height))));
+    pieces.current.push(piece(types[Math.floor(Math.random()*3)],Math.random,Math.max(15,Math.min(arenaWidth-15,(event.clientX-rect.left)*arenaWidth/rect.width)),Math.max(15,Math.min(arenaHeight-15,(event.clientY-rect.top)*arenaHeight/rect.height)),arenaWidth,arenaHeight));
     setScore(counts(pieces.current));draw();
   }
   return <Box data-testid="rps-game">
@@ -71,7 +73,7 @@ export default function RpsGame() {
     </Stack>
     {result && <Alert severity="success" role="status" sx={{mb:2}}>{result[0].toUpperCase()+result.slice(1)} wins!</Alert>}
     <Box sx={{position:'relative',borderRadius:3,overflow:'hidden',border:'1px solid #445060',bgcolor:'#edf0ed'}}>
-      <Box component="canvas" ref={canvas} width={800} height={500} onClick={add} aria-label="Rock paper scissors battle arena" sx={{width:'100%',display:'block',cursor:running?'crosshair':'default'}}/>
+      <Box component="canvas" ref={canvas} width={arenaWidth} height={arenaHeight} onClick={add} aria-label="Rock paper scissors battle arena" sx={{width:'100%',display:'block',cursor:running?'crosshair':'default'}}/>
       {!started && <Typography sx={{position:'absolute',inset:0,display:'grid',placeItems:'center',color:'#37434a',pointerEvents:'none'}}>Start a battle to fill the arena.</Typography>}
       {started && !result && hintVisible && <Typography variant="caption" sx={{position:'absolute',top:10,left:10,px:1.25,py:.5,borderRadius:5,color:'#243039',bgcolor:'#f6faf0d9',boxShadow:'0 4px 16px #17212a22',pointerEvents:'none'}}>Tap to drop a random piece</Typography>}
     </Box>

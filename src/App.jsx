@@ -26,7 +26,7 @@ function readHash() {
   const [name, detail] = window.location.hash.slice(1).split('/');
   return {
     section: sections.some(([id]) => id === name) ? name : 'home',
-    game: name === 'games' && ['2-states', 'angle', 'atlas', 'rps'].includes(detail) ? detail : null
+    game: name === 'games' && ['2-states', 'angle', 'rps'].includes(detail) ? detail : null
   };
 }
 

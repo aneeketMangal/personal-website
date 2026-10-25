@@ -65,7 +65,7 @@ export default function AngleGame() {
     }}><Box><Typography variant="h2" component="h3">What’s Your Angle</Typography><Typography sx={{
           color: "text.secondary",
           mt: 1
-        }}>Drag the handle to match the target. Four attempts.</Typography></Box><Stack direction="row" spacing={1}><Tooltip title="Rules"><IconButton aria-label="Angle game rules" onClick={() => setHelp(true)}><HelpOutline /></IconButton></Tooltip><Button startIcon={<Refresh />} variant="outlined" onClick={() => r.guesses.length && !finished ? setConfirm(true) : restart()}>New angle</Button></Stack></Stack><Box className="game-layout"><Paper variant="outlined" sx={{
+        }}>Drag the handle to match the target. Four attempts.</Typography></Box><Stack direction="row" spacing={1}><Tooltip title="Rules"><IconButton aria-label="Angle game rules" onClick={() => setHelp(true)}><HelpOutline /></IconButton></Tooltip><Button startIcon={<Refresh />} variant="outlined" onClick={() => r.guesses.length && !finished ? setConfirm(true) : restart()}>New angle</Button></Stack></Stack><Box className="game-layout angle-game-layout"><Paper className="angle-dial-panel" variant="outlined" sx={{
         p: {
           xs: 1,
           sm: 2
@@ -111,7 +111,7 @@ export default function AngleGame() {
                 e.preventDefault();
                 setEstimate(e.key === 'Home' ? 0 : 359);
               }
-            }}><circle className="handle-hit" cx={handle[0]} cy={handle[1]} r="39" fill="transparent" /><circle className="handle-ring" cx={handle[0]} cy={handle[1]} r="17" fill="#e6b4a61c" stroke="#e6b4a659" /><circle cx={handle[0]} cy={handle[1]} r="9" fill="#e6b4a6" /></g><circle cx="220" cy="220" r="6.5" fill="#edf0f2" stroke="#151d25" strokeWidth="2.5" /></svg></Box></Paper><Paper variant="outlined" sx={{
+            }}><circle className="handle-hit" cx={handle[0]} cy={handle[1]} r="39" fill="transparent" /><circle className="handle-ring" cx={handle[0]} cy={handle[1]} r="17" fill="#e6b4a61c" stroke="#e6b4a659" /><circle cx={handle[0]} cy={handle[1]} r="9" fill="#e6b4a6" /></g><circle cx="220" cy="220" r="6.5" fill="#edf0f2" stroke="#151d25" strokeWidth="2.5" /></svg></Box></Paper><Paper className="angle-control-panel" variant="outlined" sx={{
         p: {
           xs: 2.5,
           md: 3

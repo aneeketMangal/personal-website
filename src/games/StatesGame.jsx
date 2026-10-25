@@ -55,7 +55,7 @@ export default function StatesGame() {
     }}><Box><Typography variant="h2" component="h3">2 States</Typography><Typography sx={{
           color: "text.secondary",
           mt: 1
-        }}>Connect the start and destination using land borders.</Typography></Box><Stack direction="row" spacing={1}><Tooltip title="Rules"><IconButton aria-label="Game rules" onClick={() => setHelp(true)}><HelpOutline /></IconButton></Tooltip><Button startIcon={<Refresh />} variant="outlined" onClick={() => round.guesses.length && !done ? setReset(true) : restart()}>New route</Button></Stack></Stack><Box className="game-layout"><Paper variant="outlined" sx={{
+        }}>Connect the start and destination using land borders.</Typography></Box><Stack direction="row" spacing={1}><Tooltip title="Rules"><IconButton aria-label="Game rules" onClick={() => setHelp(true)}><HelpOutline /></IconButton></Tooltip><Button startIcon={<Refresh />} variant="outlined" onClick={() => round.guesses.length && !done ? setReset(true) : restart()}>New route</Button></Stack></Stack><Box className="game-layout states-game-layout"><Paper className="states-map-panel" variant="outlined" sx={{
         p: {
           xs: 1.5,
           sm: 2
@@ -71,8 +71,8 @@ export default function StatesGame() {
           }} /><Chip label={`Destination: ${byId.get(round.end).name}`} sx={{
             maxWidth: '100%', height: 'auto', minHeight: 34, '& .MuiChip-label': {whiteSpace: 'normal', py: .5},
             bgcolor: '#e8baa61b',
-            color: '#efd0c2'
-          }} /></Stack><Typography variant="caption" sx={{display: 'block', color: 'text.secondary', mt: 1.5}}>Map: geoBoundaries / DataMeet · <a href="https://creativecommons.org/licenses/by/2.5/in/" target="_blank" rel="noreferrer">CC BY 2.5 India</a></Typography></Paper><Paper variant="outlined" sx={{
+          color: '#efd0c2'
+          }} /></Stack><Typography variant="caption" sx={{display: 'block', color: 'text.secondary', mt: 1.5}}>Map: geoBoundaries / DataMeet · <a href="https://creativecommons.org/licenses/by/2.5/in/" target="_blank" rel="noreferrer">CC BY 2.5 India</a></Typography></Paper><Paper className="states-control-panel" variant="outlined" sx={{
         p: {
           xs: 2.5,
           md: 3
