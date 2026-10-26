@@ -1,5 +1,5 @@
 .mini-battle-icons span{font-family:"Segoe UI Emoji","Apple Color Emoji",sans-serif;font-size:34px;line-height:1}
-@media(min-width:900px){html{font-size:17px}}
+@media(min-width:900px){html{font-size:16.25px}}
 .mini-battle-icons span+span{margin-left:-7px}
 .rps-mark{display:block;width:86px;height:auto;overflow:visible}
 .rps-mark .rps-rock{animation:rps-float-rock 3.4s ease-in-out infinite}
